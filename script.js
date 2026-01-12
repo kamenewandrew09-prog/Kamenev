@@ -55,35 +55,35 @@ const dnipro = {
   },
   "Мельник":{
     number: 4,
-    goals: 2
+    goals: 0
   },
   "Ткаченко":{
     number: 5,
-    goals: 1
+    goals: 0
   },
   "Поліщук":{
     number: 6,
-    goals: 4
+    goals: 0
   },
   "Романюк":{
     number: 7,
-    goals: 8
+    goals: 0
   },
   "Савченко":{
     number: 8,
-    goals: 10
+    goals: 0
   },
   "Дяченко":{
     number: 9,
-    goals: 22
+    goals: 0
   },
   "Лисенко":{
     number: 10,
-    goals: 31
+    goals: 0
   },
   "Гнатюк":{
     number: 11,
-    goals: 36
+    goals: 0
   }, 
 }
 
