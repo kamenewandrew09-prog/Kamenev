@@ -3,6 +3,16 @@
 // повертає true, якщо:
 // довжина логіну символів більше 8
 // інакше повертає false
+const checkLogin = (login) => {
+    if(login.length > 8) {
+        return true
+    }
+    return false
+}
+
+
+console.log(checkLogin('hfghr'))
+console.log(checkLogin('asfjhaksfjf'))
 
 
 // 2. Написати функцію replaceA(str), яка:
@@ -10,6 +20,11 @@
 // повертає новий рядок
 // replaceA("banana") // "b@n@n@"
 
+const replaceA = (str) => {
+    return str.replaceAll('a', '@')
+}
+
+console.log(replaceA("banana"))
 
 
 // 3. Написати функцію isEmail(email), яка повертає true, якщо:
@@ -25,7 +40,11 @@
 // повертає новий рядок
 // trimText("   hello world ") // "hello world"
 
+const trimText = (str) => {
+    return str.trim()
+}
 
+console.log(trimText("   hello world     "))
 
 //  5.Написати функцію capitalize(str), яка:
 // робить
@@ -34,8 +53,31 @@
 
 // toUpperCase(), slice(), split(), join()
 
+// const capitalize = (str) => {
+//     const words = str.split(' ')
+//     for(let i = 0; i < str.length; i++) {
+//         str.toUpperCase(`${words[i]}`) + str.slice(1)
+//     }
+//     return words.join()
+// }
+
+
+// console.log(capitalize("javascript is a language"))
 
 // 6. Написати функцію countChar(str, char), яка:
 // рахує,
 // повертає число
 // countChar("banana", "a") // 3
+
+let count = 0
+
+const countChar = (str, char) => {
+    for(let i = 0; i < str.length; i++) {
+        if(char === str[i]) {
+           count++
+        }
+    }
+    return count
+}
+
+console.log(countChar("banana", "a"))
