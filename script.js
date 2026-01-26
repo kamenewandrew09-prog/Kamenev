@@ -34,6 +34,18 @@ console.log(replaceA("banana"))
 // . не останній символ
 // Подивіться сюди: includes(), indexOf(), lastIndexOf()
 
+// const isEmail = (email) => {
+//     if(email.indexOf('@') > 0) {
+//         email.includes('@')
+//         return true
+//     } else if() {
+
+//     }
+// }
+
+// console.log(isEmail("email@gmail.com"))
+
+
 
 // 4. Написати функцію trimText(str), яка:
 // видаляє
@@ -53,14 +65,16 @@ console.log(trimText("   hello world     "))
 
 // toUpperCase(), slice(), split(), join()
 
-// const capitalize = (str) => {
-//     const words = str.split(' ')
-//     for(let i = 0; i < str.length; i++) {
-//         str.toUpperCase(`${words[i]}`) + str.slice(1)
-//     }
-//     return words.join()
-// }
+const capitalize = (str) => {
+    const words = str.split(' ')
+    for(let i = 0; i < words.length; i++) {
+        let word = words[i]
+        words[i] = word[0].toUpperCase() + word.slice(1)
+    }
+    return words.join(' ')
+}
 
+console.log(capitalize("javascript is a language"))
 
 // console.log(capitalize("javascript is a language"))
 
@@ -81,3 +95,38 @@ const countChar = (str, char) => {
 }
 
 console.log(countChar("banana", "a"))
+
+
+// const obj1 = {
+//     a: 2,
+//     b: 3,
+//     logSelf() {
+//       console.log(this);
+//     }
+// }
+
+// const obj2 = obj1;
+
+// obj1.b = 777
+
+// obj1.logSelf();
+// obj2.logSelf();
+
+// // const obj3 = {}
+// // Object.assign(obj3, obj1)
+
+// const obj3 = Object.assign({}, obj1)
+
+// function func() {
+//     for (const key in obj3) {
+//         console.log(`${key} >>> ${obj3[key]}`)
+//     }
+// }
+
+// func()
+
+
+
+
+
+
