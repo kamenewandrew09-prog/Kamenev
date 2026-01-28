@@ -97,33 +97,6 @@ const countChar = (str, char) => {
 console.log(countChar("banana", "a"))
 
 
-// const obj1 = {
-//     a: 2,
-//     b: 3,
-//     logSelf() {
-//       console.log(this);
-//     }
-// }
-
-// const obj2 = obj1;
-
-// obj1.b = 777
-
-// obj1.logSelf();
-// obj2.logSelf();
-
-// // const obj3 = {}
-// // Object.assign(obj3, obj1)
-
-// const obj3 = Object.assign({}, obj1)
-
-// function func() {
-//     for (const key in obj3) {
-//         console.log(`${key} >>> ${obj3[key]}`)
-//     }
-// }
-
-// func()
 
 
 
