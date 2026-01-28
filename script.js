@@ -102,4 +102,3 @@ console.log(countChar("banana", "a"))
 
 
 
-
