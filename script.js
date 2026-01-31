@@ -34,16 +34,23 @@ console.log(replaceA("banana"))
 // . не останній символ
 // Подивіться сюди: includes(), indexOf(), lastIndexOf()
 
-// const isEmail = (email) => {
-//     if(email.indexOf('@') > 0) {
-//         email.includes('@')
-//         return true
-//     } else if() {
+const isEmail = (email) => {
+    let atIndex = email.indexOf('@')
+    let dotIndex = email.lastIndexOf('.')
+    if (atIndex > 0 
+    && dotIndex > atIndex + 1 
+    && dotIndex < email.length - 1) {
+    return true
+    }
 
-//     }
-// }
+  return false
+}
 
-// console.log(isEmail("email@gmail.com"))
+console.log(isEmail("email@gmail.com"))
+console.log(isEmail("@gmail.com"))
+console.log(isEmail("email@gmail"))
+console.log(isEmail("email@gmail."))
+console.log(isEmail("email@.com"))
 
 
 
