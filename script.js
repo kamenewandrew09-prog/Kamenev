@@ -37,13 +37,18 @@ console.log(replaceA("banana"))
 const isEmail = (email) => {
     let atIndex = email.indexOf('@')
     let dotIndex = email.lastIndexOf('.')
-    if (atIndex > 0 
-    && dotIndex > atIndex + 1 
-    && dotIndex < email.length - 1) {
-    return true
+    if (atIndex <= 0) {
+        return false
     }
 
-  return false
+    if (dotIndex <= atIndex) {
+        return false
+    }
+
+    if (dotIndex === email.length - 1) {
+        return false
+    }
+    return true
 }
 
 console.log(isEmail("email@gmail.com"))
