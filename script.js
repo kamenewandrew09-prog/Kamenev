@@ -1,117 +1,82 @@
-// 1. Написати функцію checkLogin(login), яка:
-// приймає рядок
-// повертає true, якщо:
-// довжина логіну символів більше 8
-// інакше повертає false
-const checkLogin = (login) => {
-    if(login.length > 8) {
-        return true
+// function Student(name, surname, age=18) {
+//     //при використанні new негласно
+//     // this = {}
+//     this.name = name;
+//     this.surname = surname;
+//     this.age = age;
+//     this.course = 1;
+    
+    
+//     this.nextCourse = function() {
+//         this.course++;
+//     };
+//     this.sayHi = function() {
+//         console.log(`Hello, my name is ${this.name}`);
+//     };
+//     this.changeData = function(prop, val) {
+//         this[prop] = val;
+//     }
+    
+//     //return this
+// }
+// // ФУНКЦІЇ КОНСТРУКТОРИ СТВОРЮЮТЬ ОБ'ЄКТИ
+// const people = [
+//     { name: 'Іван',   surname: 'Петренко' },
+//     { name: 'Олег',   surname: 'Ковальчук' },
+//     { name: 'Марія',  surname: 'Шевченко' },
+//     { name: 'Анна',   surname: 'Мельник' },
+//     { name: 'Дмитро', surname: 'Бондар' }
+// ];
+
+// const students = [];
+// for (let person of people) {
+//     students.push(new Student(person.name, person.surname))
+// }
+
+// console.log(students)
+
+// const cars = [
+//     { autoBrand: 'BMW',        wheelDrive: 'задній' },
+//     { autoBrand: 'Audi',       wheelDrive: 'повний' },
+//     { autoBrand: 'Toyota',     wheelDrive: 'передній' },
+//     { autoBrand: 'Subaru',     wheelDrive: 'повний' },
+//     { autoBrand: 'Mercedes',   wheelDrive: 'задній' }
+// ];
+
+
+// //Створіть конструктор, який створює об'єкт, що має властивіть
+// // speed: 0 та передані autoBrend та wheelDrive
+// // два методи. showSpeed() та accelerate(deltaSpeed) вони можуть у чейнінг
+
+
+// const autoPark = []
+
+
+function Car(speed = 0, autoBrand, wheelDrive) {
+    this.speed = speed;
+    this.autoBrand = autoBrand;
+    this.wheelDrive = wheelDrive;
+
+
+    this.showSpeed = function() {
+        return this.speed
+    },
+
+    this.accelerate = function(deltaSpeed) {
+
     }
-    return false
+
+
+    const cars = [
+    { autoBrand: 'BMW',        wheelDrive: 'задній' },
+    { autoBrand: 'Audi',       wheelDrive: 'повний' },
+    { autoBrand: 'Toyota',     wheelDrive: 'передній' },
+    { autoBrand: 'Subaru',     wheelDrive: 'повний' },
+    { autoBrand: 'Mercedes',   wheelDrive: 'задній' }
+];
+
+
 }
-
-
-console.log(checkLogin('hfghr'))
-console.log(checkLogin('asfjhaksfjf'))
-
-
-// 2. Написати функцію replaceA(str), яка:
-// замінює
-// повертає новий рядок
-// replaceA("banana") // "b@n@n@"
-
-const replaceA = (str) => {
-    return str.replaceAll('a', '@')
-}
-
-console.log(replaceA("banana"))
-
-
-// 3. Написати функцію isEmail(email), яка повертає true, якщо:
-// рядок містить символ @
-// після @ є крапка .
-// @ не на початку рядка
-// . не останній символ
-// Подивіться сюди: includes(), indexOf(), lastIndexOf()
-
-const isEmail = (email) => {
-    let atIndex = email.indexOf('@')
-    let dotIndex = email.lastIndexOf('.')
-    if (atIndex <= 0) {
-        return false
-    }
-
-    if (dotIndex <= atIndex) {
-        return false
-    }
-
-    if (dotIndex === email.length - 1) {
-        return false
-    }
-    return true
-}
-
-console.log(isEmail("email@gmail.com"))
-console.log(isEmail("@gmail.com"))
-console.log(isEmail("email@gmail"))
-console.log(isEmail("email@gmail."))
-console.log(isEmail("email@.com"))
-
-
-
-// 4. Написати функцію trimText(str), яка:
-// видаляє
-// повертає новий рядок
-// trimText("   hello world ") // "hello world"
-
-const trimText = (str) => {
-    return str.trim()
-}
-
-console.log(trimText("   hello world     "))
-
-//  5.Написати функцію capitalize(str), яка:
-// робить
-// повертає новий рядок
-// capitalize("javascript is a language") // "Javascript Is A Language"
-
-// toUpperCase(), slice(), split(), join()
-
-const capitalize = (str) => {
-    const words = str.split(' ')
-    for(let i = 0; i < words.length; i++) {
-        let word = words[i]
-        words[i] = word[0].toUpperCase() + word.slice(1)
-    }
-    return words.join(' ')
-}
-
-console.log(capitalize("javascript is a language"))
-
-// console.log(capitalize("javascript is a language"))
-
-// 6. Написати функцію countChar(str, char), яка:
-// рахує,
-// повертає число
-// countChar("banana", "a") // 3
-
-let count = 0
-
-const countChar = (str, char) => {
-    for(let i = 0; i < str.length; i++) {
-        if(char === str[i]) {
-           count++
-        }
-    }
-    return count
-}
-
-console.log(countChar("banana", "a"))
-
-
-
-
-
 
 
 
