@@ -52,10 +52,10 @@
 // const autoPark = []
 
 
-function Car(speed = 0, autoBrand, wheelDrive) {
-    this.speed = speed;
+function Car(autoBrand, wheelDrive, speed = 0) {
     this.autoBrand = autoBrand;
     this.wheelDrive = wheelDrive;
+    this.speed = speed;
 
 
     this.showSpeed = function() {
@@ -63,11 +63,12 @@ function Car(speed = 0, autoBrand, wheelDrive) {
     },
 
     this.accelerate = function(deltaSpeed) {
-
+        return this.speed += deltaSpeed
     }
 
+}
 
-    const cars = [
+const cars = [
     { autoBrand: 'BMW',        wheelDrive: 'задній' },
     { autoBrand: 'Audi',       wheelDrive: 'повний' },
     { autoBrand: 'Toyota',     wheelDrive: 'передній' },
@@ -75,8 +76,11 @@ function Car(speed = 0, autoBrand, wheelDrive) {
     { autoBrand: 'Mercedes',   wheelDrive: 'задній' }
 ];
 
+const autoPark = []
 
+for(let vehicle of cars) {
+    autoPark.push(new Car(vehicle.autoBrand, vehicle.wheelDrive))
 }
 
-
+console.log(autoPark)
 
