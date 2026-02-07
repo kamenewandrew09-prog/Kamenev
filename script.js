@@ -1,3 +1,41 @@
+// function Student(name, surname, age=18) {
+//     //при використанні new негласно
+//     // this = {}
+//     this.name = name;
+//     this.surname = surname;
+//     this.age = age;
+//     this.course = 1;
+    
+    
+//     this.nextCourse = function() {
+//         this.course++;
+//     };
+//     this.sayHi = function() {
+//         console.log(`Hello, my name is ${this.name}`);
+//     };
+//     this.changeData = function(prop, val) {
+//         this[prop] = val;
+//     }
+    
+//     //return this
+// }
+// // ФУНКЦІЇ КОНСТРУКТОРИ СТВОРЮЮТЬ ОБ'ЄКТИ
+// const people = [
+//     { name: 'Іван',   surname: 'Петренко' },
+//     { name: 'Олег',   surname: 'Ковальчук' },
+//     { name: 'Марія',  surname: 'Шевченко' },
+//     { name: 'Анна',   surname: 'Мельник' },
+//     { name: 'Дмитро', surname: 'Бондар' }
+// ];
+
+// const students = [];
+// for (let person of people) {
+//     students.push(new Student(person.name, person.surname))
+// }
+
+// console.log(students)
+
+
 // const cars = [
 //     { autoBrand: 'BMW',        wheelDrive: 'задній' },
 //     { autoBrand: 'Audi',       wheelDrive: 'повний' },
@@ -22,7 +60,8 @@ function Car(autoBrand, wheelDrive, speed = 0) {
 
 
     this.showSpeed = function() {
-        return this.speed
+        console.log(this.speed)
+        return this
     },
 
     this.accelerate = function(deltaSpeed) {
@@ -46,7 +85,7 @@ for(let vehicle of cars) {
     autoPark.push(new Car(vehicle.autoBrand, vehicle.wheelDrive))
 }
 
-autoPark[0].accelerate(20).accelerate(40)
-console.log(autoPark[0].showSpeed())
-autoPark[1].accelerate(10).accelerate(35)
-console.log(autoPark[1].showSpeed())
+autoPark[0].accelerate(20).accelerate(40).showSpeed()
+console.log(autoPark[0])
+autoPark[1].accelerate(10).accelerate(35).showSpeed()
+console.log(autoPark[1])
