@@ -1,91 +1,83 @@
-// function Student(name, surname, age=18) {
-//     //при використанні new негласно
-//     // this = {}
-//     this.name = name;
-//     this.surname = surname;
-//     this.age = age;
-//     this.course = 1;
-    
-    
-//     this.nextCourse = function() {
-//         this.course++;
-//     };
-//     this.sayHi = function() {
-//         console.log(`Hello, my name is ${this.name}`);
-//     };
-//     this.changeData = function(prop, val) {
-//         this[prop] = val;
-//     }
-    
-//     //return this
-// }
-// // ФУНКЦІЇ КОНСТРУКТОРИ СТВОРЮЮТЬ ОБ'ЄКТИ
-// const people = [
-//     { name: 'Іван',   surname: 'Петренко' },
-//     { name: 'Олег',   surname: 'Ковальчук' },
-//     { name: 'Марія',  surname: 'Шевченко' },
-//     { name: 'Анна',   surname: 'Мельник' },
-//     { name: 'Дмитро', surname: 'Бондар' }
-// ];
+function Player(name, power, hp, type='ai') {
+    this.name = name;
+    this.power = power;
+    this.hp = hp;
+    this.type = type;
 
-// const students = [];
-// for (let person of people) {
-//     students.push(new Student(person.name, person.surname))
-// }
+    this.directionOfAttack = null;
+    this.directionOfDefence = null;
 
-// console.log(students)
+    this.attack = function() {
+        return this.power;
+    }
 
+    this.takeDamage = function(damage) {
+        this.hp -= damage;
+    }
+}
 
-// const cars = [
-//     { autoBrand: 'BMW',        wheelDrive: 'задній' },
-//     { autoBrand: 'Audi',       wheelDrive: 'повний' },
-//     { autoBrand: 'Toyota',     wheelDrive: 'передній' },
-//     { autoBrand: 'Subaru',     wheelDrive: 'повний' },
-//     { autoBrand: 'Mercedes',   wheelDrive: 'задній' }
-// ];
+const players = [
+    new Player('Play1', 10, 100, 'user'),
+    new Player('Lvl01', 2, 20, 'comp_lvl_01'),
+]
 
+const gameController = {
+    attackTurn: null,
+    defenceTurn: null,
 
-// //Створіть конструктор, який створює об'єкт, що має властивіть
-// // speed: 0 та передані autoBrend та wheelDrive
-// // два методи. showSpeed() та accelerate(deltaSpeed) вони можуть у чейнінг
+    start() {
+        this.attackTurn = Math.round(Math.random()); //визначаємо чий хід
+        this.defenceTurn = Math.abs(this.attackTurn - 1);
 
-
-// const autoPark = []
-
-
-function Car(autoBrand, wheelDrive, speed = 0) {
-    this.autoBrand = autoBrand;
-    this.wheelDrive = wheelDrive;
-    this.speed = speed;
-
-
-    this.showSpeed = function() {
-        console.log(this.speed)
-        return this
+        while (players[0].hp > 0 && players[1].hp > 0) {
+            alert(`атакує гравець ${players[this.attackTurn].name}`)
+            alert(`${players[this.attackTurn].name} наносить ${players[this.attackTurn].power} урона`)
+            // реалізація механіки 
+            // викликаєте метод отримати урон у захисника та передаєте в нього
+            // метод атаки у атакуючого
+            players[this.defenceTurn].takeDamage(players[this.attackTurn].attack())
+            this.showHealth();
+            this.changeTurn();
+        }
+        this.showWinner();
+    }, 
+    changeTurn() {
+        this.attackTurn = this.defenceTurn;
+        this.defenceTurn = Math.abs(this.defenceTurn - 1);
     },
+    showHealth() {
+        alert(`
+            здоров'я ${players[this.attackTurn].name}: ${players[this.attackTurn].hp}
+            здоров'я ${players[this.defenceTurn].name}: ${players[this.defenceTurn].hp}
+            `)
+    },
+    showWinner() {
+        if(players[0].hp <= 0) {
+            alert(`переміг гравець${players[1].name}`)
+        } else {
+            alert(`переміг гравець${players[0].name}`)
+        }
+    }
+}
 
-    this.accelerate = function(deltaSpeed) {
-        this.speed += deltaSpeed
-        return this
+gameController.start();
+
+
+// ДЗ 2
+let counterZeros = 0
+let counterOnes = 0
+
+for(let i = 0; i < 1000; i++) {
+    let turn = Math.round(Math.random());
+    if(turn === 0) {
+        counterZeros++
+    } else {
+        counterOnes++
     }
 
 }
 
-const cars = [
-    { autoBrand: 'BMW',        wheelDrive: 'задній' },
-    { autoBrand: 'Audi',       wheelDrive: 'повний' },
-    { autoBrand: 'Toyota',     wheelDrive: 'передній' },
-    { autoBrand: 'Subaru',     wheelDrive: 'повний' },
-    { autoBrand: 'Mercedes',   wheelDrive: 'задній' }
-];
+console.log(counterZeros)
+console.log(counterOnes)
 
-const autoPark = []
 
-for(let vehicle of cars) {
-    autoPark.push(new Car(vehicle.autoBrand, vehicle.wheelDrive))
-}
-
-autoPark[0].accelerate(20).accelerate(40).showSpeed()
-console.log(autoPark[0])
-autoPark[1].accelerate(10).accelerate(35).showSpeed()
-console.log(autoPark[1])
