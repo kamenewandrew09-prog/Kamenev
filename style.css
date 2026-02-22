@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+
+}
+.container {
+    width: 1000px;
+    margin: 0 auto;
+    height: 100vh;
+    
+}
+
+.hp-bar {
+    height: 20px;
+    border: 1px solid red;
+}
+
+.hp-bar-inner {
+    height: 100%;
+    background-color: rgb(252, 25, 25);
+}

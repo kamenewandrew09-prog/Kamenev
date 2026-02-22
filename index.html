@@ -3,10 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kamenev</title>
-    <script src="./script.js"></script>
+    <title>the GAME</title>
+
+
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container game-field">
+        <div class="player-card">
+            <div class="player-icon">
+                <img src="" alt="" class="player-img">
+                <div class="hp-bar">
+                    <div class="hp-bar-inner"></div>
+                </div>
+            </div>
+            
+            <div class="player-content">
+                <p class="player-stats-item name"></p>
+                <p class="player-stats-item power">Сила:<span></span></p>
+                <p class="player-stats-item defence">Захист:<span></span></p>
+                
+                <form action="" class="select-direction">
+                    <label for="high">
+                       Верхній
+                       <input id="high" type="radio" value="high" name="direction">
+                    </label>
+                    <br>
+                    <label for="high">
+                       Середній
+                       <input id="middle" type="radio" value="middle" name="direction">
+                    </label>
+                    <br>
+                    <label for="low">
+                       Нижній
+                       <input id="low" type="radio" value="low" name="direction">
+                    </label>
+                    <br>
+                    <button class="attack btn">Атака</button>
+                    <button class="attack btn">Захист</button>
+                </form>
+                
+            </div>
+            
+        </div>
 
+        <div class="player-card">
+            <div class="player-icon">
+                <img src="" alt="" class="player-img">
+                <div class="hp-bar">
+                    <div class="hp-bar-inner"></div>
+                </div>
+            </div>
+            
+            <div class="player-content">
+                <p class="player-stats-item name"></p>
+                <p class="player-stats-item power">Сила:<span></span></p>
+                <p class="player-stats-item defence">Захист:<span></span></p>
+                
+                <form action="" class="select-direction">
+                    <label for="high">
+                       Верхній
+                       <input id="high" type="radio" value="high" name="direction">
+                    </label>
+                    <br>
+                    <label for="high">
+                       Середній
+                       <input id="middle" type="radio" value="middle" name="direction">
+                    </label>
+                    <br>
+                    <label for="low">
+                       Нижній
+                       <input id="low" type="radio" value="low" name="direction">
+                    </label>
+                    <br>
+                    <button class="attack btn">Атака</button>
+                    <button class="attack btn">Захист</button>
+                </form>
+                
+            </div>
+            
+        </div>
+    </div>
+
+
+
+
+    <script src="./script.js"></script>
 </body>
 </html>
