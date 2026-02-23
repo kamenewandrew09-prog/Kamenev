@@ -4,21 +4,159 @@
     box-sizing: border-box;
 }
 body {
-
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    font-family: 'Segoe UI', sans-serif;
 }
 .container {
     width: 1000px;
     margin: 0 auto;
     height: 100vh;
+}
+
+.game-field {
+    display: flex;
+    justify-content: space-around;
     
 }
 
 .hp-bar {
-    height: 20px;
-    border: 1px solid red;
+    height: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+    overflow: hidden;  
 }
 
 .hp-bar-inner {
     height: 100%;
-    background-color: rgb(252, 25, 25);
+    background-color: rgb(252, 55, 25);
 }
+
+
+.player-content {
+    margin-top: 15px;
+    padding-top: 10px;
+    background-color: rgb(250, 232, 70);
+    border-radius: 5px;
+}
+
+
+
+.player-stats-item {
+    padding: 5px;
+}
+
+.player-icon {
+    margin-top: 50px;
+}
+
+.img-wrapper {
+    margin-top: 10px;
+    height: 150px;
+    width: 100%;
+}
+
+.player-img-1 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.player-img-1:hover {
+    transform: scale(1.05);
+}
+
+.player-img-2 {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
+    transition: 0.3s;
+}
+
+.player-img-2:hover {
+    transform: scale(1.05);
+}
+
+.name {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+}
+
+.power {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.defence {
+    font-size: 15px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.select-direction {
+    padding: 5px;
+    line-height: 1.5;
+    text-shadow: 2px 2px 5px gray;
+}
+
+.kick-text {
+    font-size: 15px;
+    font-weight: bold;
+    
+}
+
+.attack-btn {
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-left: 35px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #1f1f1f;
+    background-color: rgb(240, 146, 146);
+    font-family: "Myriad Pro", sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.attack-btn:hover {
+    transform: scale(1.1);
+    opacity: .7;
+    background-color: red;
+    color: white;
+}
+
+.defence-btn {
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+    padding: 5px;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #1f1f1f;
+    background-color: rgb(126, 102, 232);
+    font-family: "Myriad Pro", sans-serif;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.defence-btn:hover {
+    transform: scale(1.1);
+    opacity: .7;
+    background-color: rgb(0, 0, 255);
+    color: white;
+}
+
