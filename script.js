@@ -1,93 +1,61 @@
-function Player(name, power, defence, hp, type='ai') {
-    this.name = name;
-    this.power = power;
-    this.defence = defence;
-    this.hp = hp;
-    this.maxHp = hp;
-    this.type = type;
+// 1.
+const bigNum = 5.6e6;
+console.log(bigNum)
 
-    this.directionOfAttack = null;
-    this.directionOfDefence = null;
+const bigNum1 = 7.8e-5;
+console.log(bigNum1)
 
-    this.attack = function() {
 
-        return this.power;
-    }
+const bigNum2 = 250e3 + 4e2
+console.log(bigNum2)
 
-    this.takeDamage = function(damage) {
-        this.hp -= damage;
-    }
-}
+// 2.
 
-const players = [
-    new Player('Player 1', 10, 13, 100, 'user'),
-    new Player('AI 01', 2, 13, 20, 'comp_lvl_01'),
-]
+let num = 238;
+console.log(num.toString(16))
 
-const gameController = {
-    attackTurn: null,
-    defenceTurn: null,
-    playerCards: null,
-    playersHP: null,
+let num1 = 238;
+console.log(num1.toString(2))
 
-    resizeHealthBar() {
-        for (const i = 0; i <=1; i++) {
-            this.playersHP[i].style.width = `${players[i].hp / players[i].maxHp * 100}%`
-        }
-    },
+let num2 = 238;
+console.log(num2.toString(8))
 
-    addHTMLData() {
-        this.playerCards = document.querySelectorAll('.player-card');
-        this.playersHP = document.querySelectorAll('.hp-bar-inner');
-        for (let i = 0; i <=1; i++) {
-            const playerNameEl = this.playerCards[i].querySelector('.player-stats-item.name');
-            playerNameEl.innerText = players[i].name;
+// 3.
 
-            const playerPowerEl = this.playerCards[i].querySelector('.player-stats-item.power span');
-            playerPowerEl.innerText = players[i].power;
+const n = parseInt("111", 2)
+console.log(n)
 
-            const playerDefenceEl = this.playerCards[i].querySelector('.player-stats-item.defence span');
-            playerDefenceEl.innerText = players[i].defence;
+const a = parseInt("ff", 16)
+console.log(a)
 
-            
-        }
-    },
+const b = parseInt("77", 8)
+console.log(b)
 
-    start() {
-        this.addHTMLData();
-        this.resizeHealthBar();
+// 4.
+console.log(isNaN("asd"))
+console.log(Number.isNaN("10"))
 
-        this.attackTurn = Math.round(Math.random()); //визначаємо чий хід
-        this.defenceTurn = Math.abs(this.attackTurn - 1);
 
-        while (players[0].hp > 0 && players[1].hp > 0) {
-            // alert(`атакує гравець ${players[this.attackTurn].name}`)
-            // alert(`${players[this.attackTurn].name} наносить ${players[this.attackTurn].power} урона`);
-            // this.resizeHealthBar();
-            
-            players[this.defenceTurn].takeDamage(players[this.attackTurn].attack())
-            // this.showHealth();
-            this.changeTurn();
-        }
-        // this.showWinner();
-    }, 
-    changeTurn() {
-        this.attackTurn = this.defenceTurn;
-        this.defenceTurn = Math.abs(this.defenceTurn - 1);
-    },
-    showHealth() {
-        alert(`
-            здоров'я ${players[this.attackTurn].name}: ${players[this.attackTurn].hp}
-            здоров'я ${players[this.defenceTurn].name}: ${players[this.defenceTurn].hp}
-            `)
-    },
-    showWinner() {
-        if(players[0].hp <= 0) {
-            alert(`переміг гравець${players[1].name}`)
-        } else {
-            alert(`переміг гравець${players[0].name}`)
-        }
-    }
-}
+// 5.
 
-gameController.start();
+console.log(parseFloat("12px"))
+console.log(parseFloat("100.5em"))
+console.log(parseFloat("45.67.89"))
+
+console.log(Number("12px")) // повертає NaN, тому що Number намагається перетворити весь рядок у число.
+console.log(parseInt("12px"))
+
+// 6.
+
+let number = -3.4
+
+console.log(Math.floor(number))
+console.log(Math.ceil(number))
+console.log(Math.trunc(number))
+
+let number1 = 12.34567
+console.log(number1.toFixed(2))
+
+// 7.
+
+
