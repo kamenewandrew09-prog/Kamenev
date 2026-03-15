@@ -1,77 +1,143 @@
-// 1.
-const bigNum = 5.6e6;
-console.log(bigNum)
-
-const bigNum1 = 7.8e-5;
-console.log(bigNum1)
+замінити всі парні елементи на настумні непарні методом splice()
 
 
-const bigNum2 = 250e3 + 4e2
-console.log(bigNum2)
+const myArr = [2 ,6, 8, 11]
 
-// 2.
+for (let i = 0; i < myArr.length; i++) {
 
-let num = 238;
-console.log(num.toString(16))
+  if (myArr[i] % 2 === 0) {
+    myArr.splice(i, 1, myArr[i] + 1);
+  }
 
-let num1 = 238;
-console.log(num1.toString(2))
-
-let num2 = 238;
-console.log(num2.toString(8))
-
-// 3.
-
-const n = parseInt("111", 2)
-console.log(n)
-
-const a = parseInt("ff", 16)
-console.log(a)
-
-const b = parseInt("77", 8)
-console.log(b)
-
-// 4.
-console.log(isNaN("asd"))
-console.log(Number.isNaN("10"))
-
-
-// 5.
-
-console.log(parseFloat("12px"))
-console.log(parseFloat("100.5em"))
-console.log(parseFloat("45.67.89"))
-
-console.log(Number("12px")) // повертає NaN, тому що Number намагається перетворити весь рядок у число.
-console.log(parseInt("12px"))
-
-// 6.
-
-let number = -3.4
-
-console.log(Math.floor(number))
-console.log(Math.ceil(number))
-console.log(Math.trunc(number))
-
-let number1 = 12.34567
-console.log(number1.toFixed(2))
-
-// 7.
-
-let input = prompt("Введіть число");
-
-let numb = parseFloat(input)
-
-if(isNaN(numb)) {
-    console.log("це не число")
-} else {
-    console.log(numb.toString(2))
-    console.log(numb.toString(16))
-    console.log(numb.toFixed(2))
-    console.log(Number.isFinite(numb));
 }
 
+console.log(myArr);
+
+const arr = ["HTML", "CSS", "React"];
+
+arr.splice(2, 0, "JS");
+
+console.log(arr);
 
 
 
 
+const myArr = [1, 3, 2];
+
+myArr.push(5);
+console.log(myArr);
+
+myArr.pop();
+console.log(myArr);
+
+myArr.unshift(5);
+console.log(myArr);
+
+myArr.shift();
+console.log(myArr);
+
+//         починаю  скільки  чим замінити
+const deleted = myArr.splice(1,      2,         67,68,69,300);
+console.log(myArr);
+
+const arr = ["HTML", "CSS", "React"];
+
+arr.splice(-1, 0, "JS");
+console.log(arr);
+
+function polySlice(arr, start, stop) {
+    const result = []
+
+    for(let i = start; i < stop; i++) {
+        result.push(arr[i])
+    }
+    return result
+}
+
+console.log(polySlice([1, 3, 2, 5, 7], 1, 4));
+
+
+const myArr = [1, 3, 2, 4, 6, 7];
+
+const squares = []
+
+myArr.forEach((el) => {
+    squares.push((el * el))
+
+})
+
+console.log(squares)
+
+
+const words = ["cat", "house", "tree", "elephant"];
+
+console.log(words.find(word => word.length > 4));
+
+// const users = [
+//   { name: "Ivan", age: 18 },
+//   { name: "Anna", age: 25 },
+//   { name: "Oleg", age: 30 }
+// ];
+
+// const user25 = users.find(user => user.age === 25)
+// console.log(user25?.name)
+
+const users = [
+  { name: "Ivan", age: 18 },
+  { name: "Anna", age: 25 },
+  { name: "Oleg", age: 30 },
+  { name: "Petro", age: 22 },
+  { name: "Maria", age: 19 },
+  { name: "Olena", age: 27 },
+  { name: "Andrii", age: 24 },
+  { name: "Dmytro", age: 31 },
+  { name: "Svitlana", age: 28 },
+  { name: "Serhii", age: 21 },
+  { name: "Kateryna", age: 26 },
+  { name: "Roman", age: 29 },
+  { name: "Natalia", age: 23 }
+];
+
+console.log(users.filter(user => user.name.indexOf('o') !== -1 || user.name.indexOf('O') !== -1))
+
+console.log(users.filter(user => user.name.toLowerCase().includes('an')))
+
+const users1 = [
+  { name: "Ivan", age: 18 },
+  { name: "Anna", age: 25 },
+  { name: "Oleg", age: 30 },
+  { name: "Petro", age: 22 },
+  { name: "Maria", age: 19 },
+  { name: "Olena", age: 27 },
+  { name: "Andrii", age: 24 },
+  { name: "Dmytro", age: 31 },
+  { name: "Svitlana", age: 28 },
+  { name: "Serhii", age: 21 },
+  { name: "Kateryna", age: 26 },
+  { name: "Roman", age: 29 },
+  { name: "Natalia", age: 23 }
+];
+
+const names = users1.map(user => user.name);
+console.log(names);
+
+const arr = users1.filter(user => user.age > 25).map(user => user.name)
+console.log(arr)
+
+
+const numbers = [1, 12, 5, 10, 9, 41]
+
+numbers.sort( (first, second) => {
+    if (first > second) {
+        return 1
+    } else if (first < second){
+        return -1
+    }
+    return 0
+})
+
+numbers.sort( (first, second) => (second - first) )
+
+
+
+console.log(numbers);
