@@ -58,4 +58,20 @@ console.log(number1.toFixed(2))
 
 // 7.
 
+let input = prompt("Введіть число");
+
+let numb = parseFloat(input)
+
+if(isNaN(numb)) {
+    console.log("це не число")
+} else {
+    console.log(numb.toString(2))
+    console.log(numb.toString(16))
+    console.log(numb.toFixed(2))
+    console.log(Number.isFinite(numb));
+}
+
+
+
+
 
