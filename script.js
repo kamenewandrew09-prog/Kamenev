@@ -1,143 +1,232 @@
-замінити всі парні елементи на настумні непарні методом splice()
+// замінити всі парні елементи на настумні непарні методом splice()
 
 
-const myArr = [2 ,6, 8, 11]
+// const myArr = [2 ,6, 8, 11]
 
-for (let i = 0; i < myArr.length; i++) {
+// for (let i = 0; i < myArr.length; i++) {
 
-  if (myArr[i] % 2 === 0) {
-    myArr.splice(i, 1, myArr[i] + 1);
-  }
+//   if (myArr[i] % 2 === 0) {
+//     myArr.splice(i, 1, myArr[i] + 1);
+//   }
 
-}
+// }
 
-console.log(myArr);
+// console.log(myArr);
 
-const arr = ["HTML", "CSS", "React"];
+// const arr = ["HTML", "CSS", "React"];
 
-arr.splice(2, 0, "JS");
+// arr.splice(2, 0, "JS");
 
-console.log(arr);
-
-
+// console.log(arr);
 
 
-const myArr = [1, 3, 2];
-
-myArr.push(5);
-console.log(myArr);
-
-myArr.pop();
-console.log(myArr);
-
-myArr.unshift(5);
-console.log(myArr);
-
-myArr.shift();
-console.log(myArr);
-
-//         починаю  скільки  чим замінити
-const deleted = myArr.splice(1,      2,         67,68,69,300);
-console.log(myArr);
-
-const arr = ["HTML", "CSS", "React"];
-
-arr.splice(-1, 0, "JS");
-console.log(arr);
-
-function polySlice(arr, start, stop) {
-    const result = []
-
-    for(let i = start; i < stop; i++) {
-        result.push(arr[i])
-    }
-    return result
-}
-
-console.log(polySlice([1, 3, 2, 5, 7], 1, 4));
 
 
-const myArr = [1, 3, 2, 4, 6, 7];
+// const myArr = [1, 3, 2];
 
-const squares = []
+// myArr.push(5);
+// console.log(myArr);
 
-myArr.forEach((el) => {
-    squares.push((el * el))
+// myArr.pop();
+// console.log(myArr);
 
-})
+// myArr.unshift(5);
+// console.log(myArr);
 
-console.log(squares)
+// myArr.shift();
+// console.log(myArr);
+
+// //         починаю  скільки  чим замінити
+// const deleted = myArr.splice(1,      2,         67,68,69,300);
+// console.log(myArr);
+
+// const arr = ["HTML", "CSS", "React"];
+
+// arr.splice(-1, 0, "JS");
+// console.log(arr);
+
+// function polySlice(arr, start, stop) {
+//     const result = []
+
+//     for(let i = start; i < stop; i++) {
+//         result.push(arr[i])
+//     }
+//     return result
+// }
+
+// console.log(polySlice([1, 3, 2, 5, 7], 1, 4));
 
 
-const words = ["cat", "house", "tree", "elephant"];
+// const myArr = [1, 3, 2, 4, 6, 7];
 
-console.log(words.find(word => word.length > 4));
+// const squares = []
+
+// myArr.forEach((el) => {
+//     squares.push((el * el))
+
+// })
+
+// console.log(squares)
+
+
+// const words = ["cat", "house", "tree", "elephant"];
+
+// console.log(words.find(word => word.length > 4));
+
+// // const users = [
+// //   { name: "Ivan", age: 18 },
+// //   { name: "Anna", age: 25 },
+// //   { name: "Oleg", age: 30 }
+// // ];
+
+// // const user25 = users.find(user => user.age === 25)
+// // console.log(user25?.name)
 
 // const users = [
 //   { name: "Ivan", age: 18 },
 //   { name: "Anna", age: 25 },
-//   { name: "Oleg", age: 30 }
+//   { name: "Oleg", age: 30 },
+//   { name: "Petro", age: 22 },
+//   { name: "Maria", age: 19 },
+//   { name: "Olena", age: 27 },
+//   { name: "Andrii", age: 24 },
+//   { name: "Dmytro", age: 31 },
+//   { name: "Svitlana", age: 28 },
+//   { name: "Serhii", age: 21 },
+//   { name: "Kateryna", age: 26 },
+//   { name: "Roman", age: 29 },
+//   { name: "Natalia", age: 23 }
 // ];
 
-// const user25 = users.find(user => user.age === 25)
-// console.log(user25?.name)
+// console.log(users.filter(user => user.name.indexOf('o') !== -1 || user.name.indexOf('O') !== -1))
 
-const users = [
-  { name: "Ivan", age: 18 },
-  { name: "Anna", age: 25 },
-  { name: "Oleg", age: 30 },
-  { name: "Petro", age: 22 },
-  { name: "Maria", age: 19 },
-  { name: "Olena", age: 27 },
-  { name: "Andrii", age: 24 },
-  { name: "Dmytro", age: 31 },
-  { name: "Svitlana", age: 28 },
-  { name: "Serhii", age: 21 },
-  { name: "Kateryna", age: 26 },
-  { name: "Roman", age: 29 },
-  { name: "Natalia", age: 23 }
-];
+// console.log(users.filter(user => user.name.toLowerCase().includes('an')))
 
-console.log(users.filter(user => user.name.indexOf('o') !== -1 || user.name.indexOf('O') !== -1))
+// const users1 = [
+//   { name: "Ivan", age: 18 },
+//   { name: "Anna", age: 25 },
+//   { name: "Oleg", age: 30 },
+//   { name: "Petro", age: 22 },
+//   { name: "Maria", age: 19 },
+//   { name: "Olena", age: 27 },
+//   { name: "Andrii", age: 24 },
+//   { name: "Dmytro", age: 31 },
+//   { name: "Svitlana", age: 28 },
+//   { name: "Serhii", age: 21 },
+//   { name: "Kateryna", age: 26 },
+//   { name: "Roman", age: 29 },
+//   { name: "Natalia", age: 23 }
+// ];
 
-console.log(users.filter(user => user.name.toLowerCase().includes('an')))
+// const names = users1.map(user => user.name);
+// console.log(names);
 
-const users1 = [
-  { name: "Ivan", age: 18 },
-  { name: "Anna", age: 25 },
-  { name: "Oleg", age: 30 },
-  { name: "Petro", age: 22 },
-  { name: "Maria", age: 19 },
-  { name: "Olena", age: 27 },
-  { name: "Andrii", age: 24 },
-  { name: "Dmytro", age: 31 },
-  { name: "Svitlana", age: 28 },
-  { name: "Serhii", age: 21 },
-  { name: "Kateryna", age: 26 },
-  { name: "Roman", age: 29 },
-  { name: "Natalia", age: 23 }
-];
-
-const names = users1.map(user => user.name);
-console.log(names);
-
-const arr = users1.filter(user => user.age > 25).map(user => user.name)
-console.log(arr)
+// const arr = users1.filter(user => user.age > 25).map(user => user.name)
+// console.log(arr)
 
 
-const numbers = [1, 12, 5, 10, 9, 41]
+// const numbers = [1, 12, 5, 10, 9, 41]
 
-numbers.sort( (first, second) => {
-    if (first > second) {
-        return 1
-    } else if (first < second){
-        return -1
+// numbers.sort( (first, second) => {
+//     if (first > second) {
+//         return 1
+//     } else if (first < second){
+//         return -1
+//     }
+//     return 0
+// })
+
+// numbers.sort( (first, second) => (second - first) )
+
+
+
+// console.log(numbers);
+
+
+
+
+
+// let a = 5;
+// let b = 9;
+
+// [a, b] = [b, a]
+
+// console.log(a)
+// console.log(b)
+
+
+// const testArr1 = [2, 5, 3, 7];
+
+// console.log(testArr1.slice(-3, 10));
+// console.log(slicePolyfill(testArr1, -3, 10))
+
+
+
+// function slicePolyfill(arr, from, to) {
+//   const newArr = [];
+  
+//   if (from < 0) {
+//     from = arr.length + from;
+//   }
+  
+//   to = to < 0 ? arr.length + from : to;
+//   to = arr.length > to ? to : arr.length;
+  
+//   for(let i = from; i < to; i++){
+//     newArr.push(arr[i]);
+//   }
+  
+//   return newArr
+// }
+
+
+
+const someArr = [3, 5, 7, 9,]
+someArr.splice(2, 1, 8,)
+console.log(someArr)
+
+const someArr1 = [3, 5, 7, 9,]
+splicePolyfill(someArr1, 2, 1, 8)
+console.log(someArr1);
+
+function splicePolyfill(arr, start, deleted, ...add) {
+    let before = arr.slice(0, start)
+    let removed = arr.slice(start, start + deleted)
+    let after = arr.slice(start + deleted)
+
+    arr.length = 0
+
+    for (let el of before) {
+        arr.push(el)
     }
-    return 0
-})
 
-numbers.sort( (first, second) => (second - first) )
+    for (let el of add) {
+        arr.push(el)
+    }
+
+    for (let el of after) {
+        arr.push(el)
+    }
+
+    return removed
+}
 
 
+const bubbleArr = [8, 3, 5, 1]
 
-console.log(numbers);
+function bubbleSort(arr) {
+
+  for(let i = 0; i < arr.length; i++) {
+    for(let j = 0; j < arr.length - 1 - i; j++) {
+      if(arr[j] > arr[j + 1]) {
+        let temp = arr[j]
+        arr[j] = arr[j + 1]
+        arr[j + 1] = temp
+      }
+    }
+  }
+
+  return arr
+}
+
+console.log(bubbleSort(bubbleArr))
