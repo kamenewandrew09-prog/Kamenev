@@ -10,7 +10,9 @@ const users = [
 let remainingUsers = [...users];
 
 function getRandomUser() {
-  if (remainingUsers.length === 0) return null;
+  if (remainingUsers.length === 0){
+    return null;
+  }
   const randomIndex = Math.floor(Math.random() * remainingUsers.length);
   const user = remainingUsers[randomIndex];
   remainingUsers.splice(randomIndex, 1);
@@ -71,3 +73,11 @@ const users1 = [
 { name: "Olena", age: 22 },
 { name: "Petro", age: 17 }
 ];
+
+const consequences = users1.reduce((acc, user) => {
+  user.age < 18 ? acc.minor.push(user) : acc.adult.push(user)
+  return acc
+}, { minor: [], adult: []})
+
+console.log(consequences)
+
