@@ -1,83 +1,52 @@
 // 1.
-const users = [
-{ name: "Ivan", age: 18 },
-{ name: "Anna", age: 25 },
-{ name: "Oleg", age: 30 },
-{ name: "Olena", age: 22 },
-{ name: "Dmytro", age: 27 }
-];
 
-let remainingUsers = [...users];
+const n = Number(prompt("Введіть кількість елементів"))
+let arr = []
 
-function getRandomUser() {
-  if (remainingUsers.length === 0){
-    return null;
+for(let i = 0; i < n; i++) {
+    arr.push(Math.floor(Math.random()* 10) + 1)
+}
+
+console.log(arr)
+
+const result = arr.reduce((acc, num) => {
+  num % 2 === 0 ? acc.even++ : acc.odd++
+  return acc 
+},{
+  even: 0,
+  odd: 0
   }
-  const randomIndex = Math.floor(Math.random() * remainingUsers.length);
-  const user = remainingUsers[randomIndex];
-  remainingUsers.splice(randomIndex, 1);
-  return user;
-}
+)
 
-for (let i = 0; i < 6; i++) {
-  console.log(getRandomUser());
-}
+console.log(result)
 
 // 2.
 
-console.log(users.sort((a, b) => {
-  if (a.name > b.name) {
-    return 1;
-  } else if (a.name < b.name) {
-    return -1;
-  } else {
-    return 0;
-  }
-}));
-
-// 3.
-const str = "2026-03-18";
-
-const arrPart = str.split('-')
-
-const datePart = arrPart.reverse()
-
-const newStr = datePart.join('.')
-console.log(newStr)
-
-// 4.
-
-const someStr = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-const splited = someStr.split('')
-const result = splited.map(letter => letter === 'o' ? '$$$' : letter)
-const someStr2 = result.join('')
-
-console.log(someStr2)
-
-// 5.
-
-const numbers = [5, 10, 15, 20];
-
-const aftermath = numbers.reduce((sum, oddEl) => {
-    return oddEl % 2 !== 0 ? sum + oddEl : sum
-}, 0)
-
-console.log(aftermath) 
-
-// 6. 
-
-const users1 = [
-{ name: "Ivan", age: 18 },
-{ name: "Anna", age: 25 },
-{ name: "Oleg", age: 30 },
-{ name: "Olena", age: 22 },
-{ name: "Petro", age: 17 }
+const users = [
+  { login: "user_1", age: 12 },
+  { login: "devMax", age: 19 },
+  { login: "codeMaster", age: 17 },
+  { login: "frontend_guy", age: 22 },
+  { login: "backend_pro", age: 16 },
+  { login: "jsNinja", age: 27 },
+  { login: "reactFan", age: 14 },
+  { login: "nodeHero", age: 31 },
+  { login: "fullstack_dev", age: 18 },
+  { login: "testerQA", age: 15 }
 ];
 
-const consequences = users1.reduce((acc, user) => {
-  user.age < 18 ? acc.minor.push(user) : acc.adult.push(user)
-  return acc
-}, { minor: [], adult: []})
+for(let i = 0; i < users.length; i++) {
+  users[i].age += 1
+}
+console.log(users)
 
-console.log(consequences)
+const aftermath = users.reduce((storage, user) => {
+    user.age >= 18 ? storage.loginOfAdults.push(user.login) : null
+    return storage
+},{
+    loginOfAdults: []
+  }
+)
+
+console.log(aftermath)
 
