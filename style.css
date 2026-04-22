@@ -1,6 +1,17 @@
 .box-container {
-    height: 150px;
-    width: 150px;
+    height: 300px;
+    width: 300px;
     border: 2px solid black;
     background-color: rgb(170, 229, 229);
+    margin: 0 auto;
+}
+
+.circle {
+    height: 70px;
+    width: 70px;
+    background-color: red;
+    border-radius: 50%;
+    border: 1px solid black;
+    margin-left: 15px;
+    margin-top: 15px;
 }
