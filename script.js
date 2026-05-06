@@ -1,23 +1,53 @@
-const boxContainer = document.querySelector('.box-container')
-const circle = document.querySelector('.circle')
+// // 1.
+// function byLetter(str) { 
+//     if(str === '') return
+//     console.log(str[0])
+//     byLetter(str.slice(1))
+// }
 
-let y = 15;
-let dir = 1;
-let move = null;
+// byLetter('Hello')
 
-boxContainer.onmouseenter = () => {
-    if (move) return; 
+// // 2.
 
-    move = setInterval(() => {
-        y += 5 * dir;
+// function sumDigits(n) {
+//     if(n < 10) {
+//         return n 
+//     }
+//     return (n % 10) + sumDigits(Math.floor(n / 10))
+// }
 
-        if (y >= 215 || y <= 15) dir *= -1;
+// console.log(sumDigits(1234))
 
-        circle.style.marginTop = y + 'px';
-    }, 20);
-};
+// // 4.
 
-boxContainer.onmouseleave = () => {
-    clearInterval(move);
-    move = null;
-};
+// function findMin(arr) {
+//     if(arr.length === 1) {
+//         return arr[0]
+//     }
+
+//     const restMin = findMin(arr.slice(1))
+//     if (arr[0] < restMin) {
+//         return arr[0]
+//     } return restMin
+// }
+
+// console.log(findMin([5,3,8,6]))
+
+function createDownCounter(start) {
+    let counter = start
+
+    return function() {
+        const current = counter 
+        if(counter > 0) {
+            counter--;
+        }
+        return current;
+    }
+}
+
+const counter = createDownCounter(3)
+
+console.log(counter())
+console.log(counter())
+console.log(counter())
+console.log(counter())
