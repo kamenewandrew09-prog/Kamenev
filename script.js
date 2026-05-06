@@ -1,38 +1,4 @@
-// // 1.
-// function byLetter(str) { 
-//     if(str === '') return
-//     console.log(str[0])
-//     byLetter(str.slice(1))
-// }
-
-// byLetter('Hello')
-
-// // 2.
-
-// function sumDigits(n) {
-//     if(n < 10) {
-//         return n 
-//     }
-//     return (n % 10) + sumDigits(Math.floor(n / 10))
-// }
-
-// console.log(sumDigits(1234))
-
-// // 4.
-
-// function findMin(arr) {
-//     if(arr.length === 1) {
-//         return arr[0]
-//     }
-
-//     const restMin = findMin(arr.slice(1))
-//     if (arr[0] < restMin) {
-//         return arr[0]
-//     } return restMin
-// }
-
-// console.log(findMin([5,3,8,6]))
-
+// 1.
 function createDownCounter(start) {
     let counter = start
 
@@ -51,3 +17,77 @@ console.log(counter())
 console.log(counter())
 console.log(counter())
 console.log(counter())
+
+// 2.
+
+function createMemory() {
+    let remember; 
+
+    return function(value) {
+        if(value !== undefined) {
+            remember = value
+        }
+        return remember
+    }
+}
+
+const remember = createMemory()
+console.log(remember(5))
+console.log(remember(10))
+console.log(remember())
+
+// 3.
+
+function createToggle() {
+    let toggle = false
+
+    return function () {
+        toggle = !toggle
+        return toggle
+    }
+}
+
+const toggle = createToggle()
+console.log(toggle())
+console.log(toggle())
+console.log(toggle())
+console.log(toggle())
+
+// 4.
+
+function limitCalls(limit) {
+    let fn = 0
+
+    return function() {
+        if(fn < limit) {
+            fn++
+            return "ok"
+        } else {
+            return "limit reached"
+        }
+    }
+}
+
+
+const fn = limitCalls(3)
+console.log(fn())
+console.log(fn())
+console.log(fn())
+console.log(fn())
+console.log(fn())
+
+// 5.
+
+function createIdGenerator(id) {
+    let nextId = 0
+    
+    return function() {
+        nextId++
+        return nextId
+    }
+}
+
+const nextId = createIdGenerator();
+console.log(nextId())
+console.log(nextId())
+console.log(nextId())
