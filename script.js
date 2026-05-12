@@ -1,70 +1,53 @@
 // 1.
-function byLetter(str) { 
-    if(str === '') return
-    console.log(str[0])
-    byLetter(str.slice(1))
+function createAdder() {
+    let add = 0
+    return function(num) {
+        add += num
+        return add
+    }
 }
 
-byLetter('Hello')
+const add = createAdder()
+console.log(add(5))
+console.log(add(3))
+console.log(add(8))
 
 // 2.
 
-function sumDigits(n) {
-    if(n < 10) {
-        return n 
+function createRange(min, max) {
+    return function(num) {
+        if(num < min) {
+            return false
+        } else if(num > max) {
+            return false
+        }
+        return true
     }
-    return (n % 10) + sumDigits(Math.floor(n / 10))
 }
 
-console.log(sumDigits(1234))
-
+const inRange = createRange(10, 20);
+console.log(inRange(5))
+console.log(inRange(15))
+console.log(inRange(25))
 
 // 3.
 
-function flatten(arr) {
-    let result = [];
-
-    for (let el of arr) {
-        if (Array.isArray(el)) {
-            result = result.concat(flatten(el));
-        } else {
-            result.push(el);
+function createBank(currentBalance) {
+    let balance = currentBalance
+    return {
+        deposit(amount) {
+            balance += amount
+        },
+        withdraw(amount) {
+            balance -= amount
+        },
+        getBalance() {
+            return balance
         }
     }
+} 
 
-    return result;
-}
-
-console.log(flatten([1, [2, 3], 4]));
-
-// 4.
-
-function findMin(arr) {
-    if(arr.length === 1) {
-        return arr[0]
-    }
-
-    const restMin = findMin(arr.slice(1))
-    if (arr[0] < restMin) {
-        return arr[0]
-    } return restMin
-}
-
-console.log(findMin([5,3,8,6]))
-
-
-// 5.
-
-function countOccurrences(arr, el) {
-    if(arr.length === 0) {
-        return 0
-    }
-    if(arr[0] === el) {
-        return 1 + countOccurrences(arr.slice(1), el)
-    } else {
-        return countOccurrences(arr.slice(1), el)
-    }
-}
-
-console.log(countOccurrences([1,2,4,3,4], 4))
-
+const bank = createBank(100);
+bank.deposit(50)
+bank.withdraw(30)
+console.log(bank.getBalance())
