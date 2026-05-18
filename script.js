@@ -1,53 +1,26 @@
-function memorize(fn) {
-    const cache = {}
-    return function(arg) {
-        if(cache[arg] !== undefined) {
-            return cache[arg]
-        }  
-        const result = fn(arg)
-        cache[arg] = result
-        return result
-    }
-
+function sayHi(msOrMr, position) {
+    console.log(`${msOrMr} ${this.name}: ${position}`);
 }
 
-const square = memorize(n => n * n);
+const user = {
+    name: 'Oleg',
+    tempFunc() {console.log('asdbfvasdbkl')}
+};
 
-console.log(square(2));
-console.log(square(2));
-console.log(square(2));
-console.log(square(3));
-console.log(square(3));
-console.log(square(2));
+const admin = {
+    name: 'Tetyana',
+};
 
 
-function createTempValue(ms) {
-    let value = null;
-    let timeout = null;
-
-    return {
-        set(newValue) {
-            value = newValue
-            if (timeout) {
-                clearTimeout(timeout);
-            }
-            timeout = setTimeout(() => {
-                value = null;
-                timeout = null;
-            }, ms);
-        },
-        get() {
-            return value;
-        }
-    }
+function applyPolyfill(func, context, ...restArgs) {
+    const tempContext = {...context}
+    const tempFuncPropName = Symbol();
+    tempContext[tempFuncPropName] = func;
+    
+    return tempContext[tempFuncPropName](...restArgs)
+    
 }
 
-const temp = createTempValue(5000);
+applyPolyfill(sayHi, user, 'Mr', 'director');
 
-
-temp.set(5);
-console.log(temp.get()); 
-
-setTimeout(() => {
-    console.log(temp.get()); 
-}, 5000);
+console.log(user)
