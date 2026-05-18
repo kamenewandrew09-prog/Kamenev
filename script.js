@@ -1,53 +1,53 @@
-// 1.
-function createAdder() {
-    let add = 0
-    return function(num) {
-        add += num
-        return add
+function memorize(fn) {
+    const cache = {}
+    return function(arg) {
+        if(cache[arg] !== undefined) {
+            return cache[arg]
+        }  
+        const result = fn(arg)
+        cache[arg] = result
+        return result
     }
+
 }
 
-const add = createAdder()
-console.log(add(5))
-console.log(add(3))
-console.log(add(8))
+const square = memorize(n => n * n);
 
-// 2.
+console.log(square(2));
+console.log(square(2));
+console.log(square(2));
+console.log(square(3));
+console.log(square(3));
+console.log(square(2));
 
-function createRange(min, max) {
-    return function(num) {
-        if(num < min) {
-            return false
-        } else if(num > max) {
-            return false
-        }
-        return true
-    }
-}
 
-const inRange = createRange(10, 20);
-console.log(inRange(5))
-console.log(inRange(15))
-console.log(inRange(25))
+function createTempValue(ms) {
+    let value = null;
+    let timeout = null;
 
-// 3.
-
-function createBank(currentBalance) {
-    let balance = currentBalance
     return {
-        deposit(amount) {
-            balance += amount
+        set(newValue) {
+            value = newValue
+            if (timeout) {
+                clearTimeout(timeout);
+            }
+            timeout = setTimeout(() => {
+                value = null;
+                timeout = null;
+            }, ms);
         },
-        withdraw(amount) {
-            balance -= amount
-        },
-        getBalance() {
-            return balance
+        get() {
+            return value;
         }
     }
-} 
+}
 
-const bank = createBank(100);
-bank.deposit(50)
-bank.withdraw(30)
-console.log(bank.getBalance())
+const temp = createTempValue(5000);
+
+
+temp.set(5);
+console.log(temp.get()); 
+
+setTimeout(() => {
+    console.log(temp.get()); 
+}, 5000);
