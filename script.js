@@ -12,7 +12,7 @@ const admin = {
 };
 
 
-function applyPolyfill(func, context, ...restArgs) {
+function callPolyfill(func, context, ...restArgs) {
     const tempContext = {...context}
     const tempFuncPropName = Symbol();
     tempContext[tempFuncPropName] = func;
@@ -21,6 +21,30 @@ function applyPolyfill(func, context, ...restArgs) {
     
 }
 
-applyPolyfill(sayHi, user, 'Mr', 'director');
+callPolyfill(sayHi, user, 'Mr', 'director');
 
 console.log(user)
+
+
+function applyPolyfill(func, context, args) {
+    const tempContext = {...context}
+    const tempFuncPropName = Symbol();
+    tempContext[tempFuncPropName] = func;
+    
+    return tempContext[tempFuncPropName](...args)
+    
+}
+
+applyPolyfill(sayHi, user, ['Mr', 'director']);
+
+console.log(user)
+
+
+function bindPolyfill(func, context, ...bindedArgs) {
+    return function(...newArgs) {
+        return func.apply(context, [...bindedArgs, ...newArgs])
+    }
+}
+
+const result = bindPolyfill(sayHi, user, 'Mr');
+result('director')
