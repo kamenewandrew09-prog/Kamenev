@@ -1,27 +1,34 @@
-function callPolyfill(func, context, ...args) {
-    const tempFuncProp = Symbol();
+class User {
+    static userID = 0;
+    static users = []
 
-    context[tempFuncProp] = func;
-    const result = context[tempFuncProp](...args);
-    delete context[tempFuncProp];
+    constructor(login) {
+        User.users.forEach(user => {
+            if (user.login.toLowerCase() === login.toLowerCase()) {
+                throw new Error('login already exists');
+            }
+        });
 
-    return result;
+        this.id = User.userID++;
+        this.login = login;
+       
+        User.users.push(this);
+    }
+
+    sayHi() {
+        console.log(`Hello from ${this.login}`)
+    }
+
+    static greeting() {
+        User.users.forEach(user => {
+            user.sayHi();
+        });
+    }
 }
 
-function bindPolyfill(func, context, ...bindedArgs) {
-    return function (...newArgs) {
-        return callPolyfill(func, context, ...bindedArgs, ...newArgs);
-    };
-}
+const u1 = new User('wqe');
+const u2 = new User('asd');
+const u3 = new User('W1qe');
 
-const user = {
-    name: "Andrii"
-};
 
-function sayHi(title, position) {
-    console.log(`Hi ${title} ${this.name} ${position}`);
-}
-
-const result = bindPolyfill(sayHi, user, "Mr");
-
-result("director");
+User.greeting();
