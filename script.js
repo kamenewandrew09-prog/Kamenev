@@ -1,88 +1,43 @@
-function bulka(burgerArr, callbackFn) {
-
-    setTimeout(() => {
-        console.log("булочка розігріта");
-        burgerArr.push("булочка")
-        callbackFn(burgerArr)
-    }, 2000)
-}
-
-function kotleta(burgerArr, callbackFn) {
-   
-    setTimeout(() => {
-        console.log("котлета посмажена");
-        burgerArr.push("котлета")
-        callbackFn(burgerArr)
-    }, 2500)
-}
-
-function lettuce(burgerArr, callbackFn) {
-   
-    setTimeout(() => {
-        console.log("поклали листя салату");
-        burgerArr.push("листя салату")
-        callbackFn(burgerArr)
-    }, 3000)
-}
-
-function cheese(burgerArr, callbackFn) {
-   
-    setTimeout(() => {
-        console.log("ломтик сиру");
-        burgerArr.push("сир")
-        callbackFn(burgerArr)
-    }, 3500)
-}
-
-function sauce(burgerArr, callbackFn) {
-   
-    setTimeout(() => {
-        console.log("смазали соусом");
-        burgerArr.push("соус")
-        callbackFn(burgerArr)
-    }, 4000)
-}
-
-function zbirka(burgerArr, callbackFn) {
-
-    setTimeout(() => {
-        console.log("бургер зібраний " + burgerArr);
-        callbackFn(burgerArr);
-    }, 1000)
-}
-
-
 new Promise((resolve) => {
-    const burgerArr = []
-    bulka(burgerArr, resolve);
-   
+    const arr = [];
+    setTimeout(() => {
+        const random = Math.floor(Math.random() * 5) + 1
+        arr.push(`1: ${random}`)
+        resolve(arr)
+    }, 3000)
 })
-   .then(burgerArr => {
-        return new Promise(resolve => {
-            kotleta(burgerArr, resolve);
+
+    .then(arr => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const random = Math.floor(Math.random() * 5) + 6
+                arr.push(`2: ${random}`)
+                resolve(arr)
+            },2000)      
         })
     })
-    .then(burgerArr => {
-        return new Promise(resolve => {
-            lettuce(burgerArr, resolve);
+
+    .then(arr => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                const random = Math.floor(Math.random() * 5) + 11
+                arr.push(`3: ${random}`)
+                resolve(arr)
+            },1000)      
         })
     })
-    .then(burgerArr => {
-        return new Promise(resolve => {
-            cheese(burgerArr, resolve);
+
+    .then(arr => {
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                let html = ''
+
+                arr.forEach(item => {
+                    html += `<li>${item}</li>`
+                })
+
+                document.body.insertAdjacentHTML('beforeend', `<ol>${html}</ol>`)
+                resolve();
+            }, 2000)
         })
-    })
-    .then(burgerArr => {
-        return new Promise(resolve => {
-            sauce(burgerArr, resolve);
-        })
-    })
-    .then(burgerArr => {
-        return new Promise(resolve => {
-            zbirka(burgerArr, resolve);
-        })
-    })
-    .then(result => {
-        console.log(result)
-        console.log("ГОТОВО");
     })
