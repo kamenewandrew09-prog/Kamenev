@@ -1,58 +1,30 @@
-function firstProm() {
-    return new Promise((resolve) => {
-        const arr = [];
-        setTimeout(() => {
-            const random = Math.floor(Math.random() * 5) + 1
-            arr.push(`1: ${random}`)
-            return resolve(arr)
-        }, 3000)
-    })   
-}
-
-function secondProm(arr) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const random = Math.floor(Math.random() * 5) + 6
-            arr.push(`2: ${random}`)
-            return resolve(arr)
-        },2000)      
+fetch("https://picsum.photos/v2/list")
+    .then(res => {
+        if (res.ok) {
+            return res.json()
+        }
+        throw new Error("Помилка")
     })
-}
+    .then(images => {
+        const pictures = document.querySelector(".pictures")
 
-
-function thirdProm(arr) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            const random = Math.floor(Math.random() * 5) + 11
-            arr.push(`3: ${random}`)
-            return resolve(arr)
-        },1000)      
+        images.forEach(image => {
+            pictures.insertAdjacentHTML(
+                "beforeend",
+                `<div class="card">
+                    <img src="${image.download_url}" alt="${image.author}">
+                    <p>${image.author}</p>
+                    <a href="${image.download_url}" target="_blank">
+                        Завантажити
+                    </a>
+                </div>`
+            )
+        })
     })
-}
-        
+    .catch(err => {
+        console.error(err)
+    })
 
 
-function dom(arr) {
-    return new Promise((resolve) => {
-        setTimeout(() => {
-            let html = ''
 
-            arr.forEach(item => {
-                html += `<li>${item}</li>`
-            })
-
-            document.body.insertAdjacentHTML('beforeend', `<ol>${html}</ol>`)
-            return resolve()
-        }, 2000)
-    })   
-}
-
-async function result() {
-    let arr = await firstProm()
-    arr = await secondProm(arr)
-    arr = await thirdProm(arr)
-    await dom(arr)
-}
-
-result()
 
