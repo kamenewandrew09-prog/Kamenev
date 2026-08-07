@@ -23,9 +23,9 @@ async function getTopRatedMovies(page) {
             mainDOM.insertAdjacentHTML('beforeend', `
                 <div class="movie-item" onclick="getDetails(${movie.id})">
                     <div class="genres-wrapper">
-                        <div class="movie-genre">
-                            ${genresObj[movie.genre_ids[0]]}
-                        </div>
+                        ${movie.genre_ids.map(genreId => {
+                            return `<div class="movie-genre">${genresObj[genreId]}</div>`
+                        }).join('<br>')}
                     </div>
                     <div class="movie-item-img-wrapper">
                         <img src="${imagePrefix}${movie.poster_path}" class="movie-item-img">
@@ -45,6 +45,38 @@ async function getDetails(id) {
         const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=uk-UK`, options);
         const data = await resp.json();
         console.log(data);
+        const releaseDate = new Date(data.release_date)
+        const formattedDate = releaseDate.toLocaleDateString('uk-UA', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric'
+        })
+        mainDOM.innerHTML = ''
+        mainDOM.insertAdjacentHTML('beforeend', `
+            <div class="details-page">
+                <div class="movie-details">
+                    <div class="movie-details-img-wrapper">
+                        <img src="${imagePrefix}${data.poster_path}" class="movie-details-img">
+                    </div>
+                    <div class="movie-details-info">
+                        <div class="movie-details-title">${data.title}</div>
+                        <div class="movie-details-original-title">${data.original_title}</div>
+                        <div class="movie-details-release-date">Дата виходу: ${formattedDate}</div>
+                        <div class="movie-details-budget">Бюджет: ${data.budget}$</div>
+                        <div class="movie-details-vote-average">Рейтинг: ${data.vote_average}/10</div>
+                        <div class="movie-details-genres">Жанр: ${data.genres.map(genre => {   
+                            return genre.name
+                        }).join(', ')}
+                        </div>
+                        <div class="movie-details-production-companies">Продакшн: ${data.production_companies.map(company => {
+                            return company.name
+                        }).join(', ')}</div>
+                    </div>
+                    <div class="movie-details-overview">Сюжет Фільму: ${data.overview || "Опис фільму відсутній"}</div>
+                </div>
+            </div>
+        `)
+
 
     } catch (e) {
         console.error(e);
