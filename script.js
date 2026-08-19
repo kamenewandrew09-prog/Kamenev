@@ -53,6 +53,7 @@ async function getDetails(id) {
         })
         mainDOM.innerHTML = ''
         mainDOM.insertAdjacentHTML('beforeend', `
+            <button class="back-button" onclick="getTopRatedMovies(1)">Назад</button> d
             <div class="details-page">
                 <div class="movie-details">
                     <div class="movie-details-img-wrapper">
@@ -76,7 +77,6 @@ async function getDetails(id) {
                 </div>
             </div>
         `)
-
 
     } catch (e) {
         console.error(e);
