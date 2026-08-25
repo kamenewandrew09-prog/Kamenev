@@ -1,3 +1,7 @@
+const prevPageBtnDOM = document.querySelector('.prev-page')
+const currPageDOM = document.querySelector('.curr-page')
+const nextPageBtnDOM = document.querySelector('.next-page')
+const loadMoreBtnDOM = document.querySelector('.load-more')
 const mainDOM = document.querySelector('.main')
 const options = {
     method: 'GET',
@@ -10,15 +14,25 @@ const options = {
 const imagePrefix = 'https://image.tmdb.org/t/p/w342/'
 
 const genresObj = {}
+let currentPage = 1
+let totalPages;
+let isLoading = false 
 
-async function getTopRatedMovies(page) {
+async function getTopRatedMovies(page, isClearPage = true) {
     try {
+        isLoading = true
         const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=uk-UK&page=${page}`, options)
         const data = await response.json()
-        // console.log(data);
         const movies = data.results
+
+        currentPage = data.page
+        totalPages = data.total_pages
+        changePages()
+
+        if (isClearPage) mainDOM.innerHTML = '';
+
         console.log(movies);
-        mainDOM.innerHTML = ''
+        // mainDOM.innerHTML = ''
         movies.forEach(movie => {
             mainDOM.insertAdjacentHTML('beforeend', `
                 <div class="movie-item" onclick="getDetails(${movie.id})">
@@ -35,6 +49,8 @@ async function getTopRatedMovies(page) {
             `)
         })
 
+        isLoading = false 
+
     } catch (e) {
         console.error(e)
     }
@@ -42,7 +58,9 @@ async function getTopRatedMovies(page) {
 
 async function getDetails(id) {
     try {
+        isLoading = true
         const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=uk-UK`, options);
+        isLoading = false 
         const data = await resp.json();
         console.log(data);
         const releaseDate = new Date(data.release_date)
@@ -77,9 +95,31 @@ async function getDetails(id) {
                 </div>
             </div>
         `)
+        isLoading = false 
 
     } catch (e) {
         console.error(e);
+    }
+}
+
+function changePages() {
+    if(currentPage <= 1) {
+        prevPageBtnDOM.classList.add("hidden")
+    } else {
+        prevPageBtnDOM.classList.remove("hidden")
+        prevPageBtnDOM.onclick = () => getTopRatedMovies(currentPage - 1)
+        prevPageBtnDOM.innerHTML = currentPage - 1
+    }
+    currPageDOM.innerHTML = currentPage
+    if(currentPage >= totalPages) {
+        nextPageBtnDOM.classList.add("hidden")
+        loadMoreBtnDOM.classList.add("hidden")
+    } else {
+        loadMoreBtnDOM.classList.remove("hidden")
+        loadMoreBtnDOM.onclick = () => getTopRatedMovies(currentPage + 1, false)
+        nextPageBtnDOM.classList.remove("hidden")
+        nextPageBtnDOM.onclick = () => getTopRatedMovies(currentPage + 1)
+        nextPageBtnDOM.innerHTML = currentPage + 1
     }
 }
 
@@ -95,9 +135,20 @@ async function getGenres() {
 
 async function loadPage() {
     await getGenres()
-    await getTopRatedMovies(1)
+    await getTopRatedMovies(currentPage)
     
 }
 
 loadPage()
+
+window.onscroll = function(e) {
+    const scrollPosition = window.scrollY + window.innerHeight
+    const pageHeight = document.documentElement.scrollHeight
+
+    if(!isLoading && scrollPosition >= pageHeight - 300) {
+        if(currentPage < totalPages) {
+            getTopRatedMovies(currentPage + 1, false)
+        }
+    }
+}
 

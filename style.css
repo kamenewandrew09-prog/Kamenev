@@ -1,4 +1,5 @@
 body {
+    padding: 5px;
     background-color: #111827;
 }
 
@@ -155,4 +156,12 @@ body {
 .back-button:hover {
     transform: scale(1.05);
     background-color: #7c83fd;
+}
+
+.curr-page {
+    color: #fff;
+}
+
+.pagination .hidden {
+    display: none;
 }
