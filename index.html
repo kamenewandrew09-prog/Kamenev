@@ -9,19 +9,36 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="pagination">
-        <button class="prev-page">Попередня</button>
-        <span class="curr-page"></span>
-        <button class="next-page">Наступна</button>
-    </div>
+    <div class="search-forms-wrapper">
+        <form action="#" class="search-form">
+            <input class="search-movie-input" type="text" placeholder="Введіть назву">
+            <button type="submit">Пошук</button>
+        </form>
+        <form action="#" class="search-form-2">
+            <input class="search-form-input" type="text" placeholder="Введіть назву">
+            <button type="submit">Пошук</button>
+        </form> 
+    </div> 
+    <form action="#" class="search-form-ajax">
+        <div class="search-input-wrapper">
+            <input class="search-form-input" type="text" placeholder="Введіть назву">
+            <div class="propose-wrapper hidden"></div>
+        </div>
+        <button type="submit" class="search-btn">Пошук</button>
+    </form>
 
     <div class="wrapper">
         <main class="main">
            
         </main>
-        <button class="load-more">Load-more</button>
+        <div class="pagination hidden-2">
+            <button class="load-more">Завантажити</button>
+            <button class="prev-page">Попередня</button>
+            <span class="curr-page"></span>
+            <button class="next-page">Наступна</button>
+        </div>
     </div>
-    
+
 
     <script src="script.js"></script>
 </body>

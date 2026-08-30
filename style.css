@@ -28,7 +28,7 @@ body {
     position: absolute;
     top: 10px;
     left: 10px;
-    border: rgb(0, 14, 62) solid 2px;
+    border: rgb(0, 14, 62) solid 1px;
     border-radius: 3px;
     background-color: grey;
     padding: 3px;
@@ -139,29 +139,134 @@ body {
 
 .back-button {
     position: absolute;
-    top: 15px;
-    left: 15px;
+    top: 50px;
+    left: 44px;
     z-index: 10;
-    padding: 10px 20px;
-    border-radius: 10px;
-    border: 1px solid #7c83fd ;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
     background-color: #5258c9;
     color: #fff;
     cursor: pointer;
     font-size: 16px;
     font-family: Georgia, serif;
     font-weight: bold;
+    line-height: 1.3em;
 }
 
 .back-button:hover {
-    transform: scale(1.05);
+    opacity: .9;
     background-color: #7c83fd;
 }
+
+
+/* .pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 8px;
+}
+
+.hidden-2 {
+    display: none;
+} */
+
+.load-more {
+    position: absolute;
+    cursor: pointer;
+    left: 44px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: #5258c9;
+    color: #fff;
+    border: none;
+    font-size: 16px;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    line-height: 1.3em;
+}
+
+.load-more:hover {
+    background-color: #7c83fd;
+    opacity: .9;
+}    
+
 
 .curr-page {
     color: #fff;
 }
 
-.pagination .hidden {
+.search-forms-wrapper {
+   display: flex;
+   gap: 20px;
+}
+
+.search-forms-wrapper *{
+    font-size: 18px;
+}
+
+.search-form-ajax *{
+    font-size: 18px;
+}
+
+.search-form-ajax {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.search-input-wrapper {
+    position: relative;
+}
+
+.propose-wrapper {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: #ddf8ff;
+    border: 1px solid black;
+    padding: 10px;
+    z-index: 99;
+}
+
+.hidden {
+    display: none;
+}
+
+.search-item-ajax {
+    cursor: pointer;
+}
+
+.search-item-ajax:hover {
+    opacity: .7;
+}
+
+.search-btn {
+    cursor: pointer;
+    border: none;
+    background-color: #fff;
+    font-family: inherit;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    align-items: center;
+    gap: 8px;
+}
+
+.hidden-2 {
     display: none;
 }
