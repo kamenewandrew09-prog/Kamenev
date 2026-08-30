@@ -87,7 +87,7 @@ function searchMovieAjax(keyword) {
                 const movies = res.results
                 console.log(res)
                 proposeWrapper.innerHTML = ''
-                if(!movies.length){
+                if(movies.length === 0){
                     proposeWrapper.classList.add('hidden')
                 } else {
                     proposeWrapper.classList.remove('hidden')
