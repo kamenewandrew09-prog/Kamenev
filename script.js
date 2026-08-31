@@ -55,7 +55,8 @@ async function getTopRatedMovies(page, isClearPage = true) {
                 </div>
             `)
         })
-
+        pagination.classList.remove('hidden')
+        searchFormAjax.classList.remove('hidden')
         isLoading = false 
 
     } catch (e) {
@@ -128,6 +129,7 @@ searchForm2.addEventListener('input', e => {
 searchFormAjax.addEventListener('input', e => { 
     e.preventDefault()   
     const input = e.target
+    input = searchFormAjax.querySelector('.search-form-input')
     searchMovieAjax(input.value)
 })
 
@@ -135,6 +137,8 @@ searchFormAjax.addEventListener('input', e => {
 async function getDetails(id) {
     try {
         isLoading = true
+        searchFormAjax.classList.add('hidden')
+        pagination.classList.add('hidden')
         const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=uk-UK`, options);
         isLoading = false 
         const data = await resp.json();
@@ -145,10 +149,9 @@ async function getDetails(id) {
             month: 'long',
             year: 'numeric'
         })
-        pagination.classList.add('hidden-2')
         mainDOM.innerHTML = ''
         mainDOM.insertAdjacentHTML('beforeend', `
-            <button class="back-button" onclick="backToMovies()">Назад</button> 
+            <button class="back-button" onclick="getTopRatedMovies(1)">Назад</button> 
             <div class="details-page">
                 <div class="movie-details">
                     <div class="movie-details-img-wrapper">
@@ -179,10 +182,6 @@ async function getDetails(id) {
     }
 }
 
-function backToMovies() {
-    pagination.classList.remove('hidden-2')
-    getTopRatedMovies(1)
-}
 
 function changePages() {
     if(currentPage <= 1) {
@@ -233,4 +232,6 @@ loadPage()
 //         }
 //     }
 // }
+
+
 

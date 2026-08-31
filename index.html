@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="search-forms-wrapper">
+    <div class="search-forms-wrapper hidden">
         <form action="#" class="search-form">
             <input class="search-movie-input" type="text" placeholder="Введіть назву">
             <button type="submit">Пошук</button>
@@ -19,19 +19,19 @@
             <button type="submit">Пошук</button>
         </form> 
     </div> 
-    <form action="#" class="search-form-ajax">
+    <form action="#" class="search-form-ajax hidden">
         <div class="search-input-wrapper">
             <input class="search-form-input" type="text" placeholder="Введіть назву">
             <div class="propose-wrapper hidden"></div>
+            <button type="submit" class="search-btn">Пошук</button>
         </div>
-        <button type="submit" class="search-btn">Пошук</button>
     </form>
 
     <div class="wrapper">
         <main class="main">
            
         </main>
-        <div class="pagination hidden-2">
+        <div class="pagination hidden">
             <button class="load-more">Завантажити</button>
             <button class="prev-page">Попередня</button>
             <span class="curr-page"></span>
