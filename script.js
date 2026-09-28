@@ -8,6 +8,14 @@ const mainDOM = document.querySelector('.main')
 const searchForm = document.querySelector('.search-form')
 const searchForm2 = document.querySelector('.search-form-2')
 const searchFormAjax = document.querySelector('.search-form-ajax')
+const topRatedBtn = document.querySelector('#topRatedBtn')
+const popularBtn = document.querySelector('#popularBtn')
+const upcomingBtn = document.querySelector('#upcomingBtn')
+const nowPlayingBtn = document.querySelector('#nowPlayingBtn')
+const tabs = document.querySelector('.tabs')
+const movieTabs = document.querySelectorAll('.movie-tabs')
+
+
 const options = {
     method: 'GET',
     headers: {
@@ -23,12 +31,71 @@ let currentPage = 1
 let totalPages;
 let isLoading = false
 let searchMovieCooldown; 
-let searchMovieAjaxCooldown; 
+let searchMovieAjaxCooldown;
+let movieItemTimeout;
+let movieItemAddInfo;
+let someInfo;
 
-async function getTopRatedMovies(page, isClearPage = true) {
+async function getTopRatedMovies(isClearPage = true) {
+    const url = new URL(`https://api.themoviedb.org/3/movie/top_rated`)
+    url.searchParams.set('language', 'uk=UA')
+    url.searchParams.set('page', currentPage)
+    getMovies(url)
+}
+
+async function getPopularMovies(isClearPage = true) {
+    const url = new URL(`https://api.themoviedb.org/3/movie/popular`)
+    url.searchParams.set('language', 'uk=UA')
+    url.searchParams.set('page', currentPage)
+    getMovies(url)
+}
+
+async function getUpcomingMovies(isClearPage = true) {
+    const url = new URL(`https://api.themoviedb.org/3/movie/upcoming`)
+    url.searchParams.set('language', 'uk=UA')
+    url.searchParams.set('page', currentPage)
+    getMovies(url)
+}
+
+async function getNowPlayingMovies(isClearPage = true) {
+    const url = new URL(`https://api.themoviedb.org/3/movie/now_playing`)
+    url.searchParams.set('language', 'uk=UA')
+    url.searchParams.set('page', currentPage)
+    getMovies(url)
+}
+
+async function showAddInfo(id, movieItem) {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=uk-UK`, options)
+    const data = await response.json();
+    clearInterval(movieItemTimeout);
+    movieItemTimeout = setTimeout(() => {
+        if (someInfo === id) {
+            return   
+        }
+        someInfo = id
+        console.log('...запит...')
+        movieItemAddInfo = document.createElement('div')
+        movieItemAddInfo.classList.add('movie-item-add-info')
+        movieItemAddInfo.insertAdjacentHTML('beforeend', `
+            <div class="show-info-details-title">Назва фільму: ${data.title}</div>
+            <div class="show-info-details-vote-average">Рейтинг: ${data.vote_average}</div>
+            <div class="show-info-details-release-date">Дата виходу: ${data.release_date}</div>
+            <div class="show-info-details-genres">Жанр: ${data.genres.map(genre => {return genre.name}).join(', ')}</div>
+        `)
+        movieItem.append(movieItemAddInfo)
+    }, 500)
+}
+
+function removeInfo() {
+    if(movieItemAddInfo) {
+        movieItemAddInfo.remove()
+    }  
+}
+
+async function getMovies(url, isClearPage = true) {
     try {
         isLoading = true
-        const response = await fetch(`https://api.themoviedb.org/3/movie/top_rated?language=uk-UK&page=${page}`, options)
+        const response = await fetch(url, options)
         const data = await response.json()
         const movies = data.results
 
@@ -41,29 +108,47 @@ async function getTopRatedMovies(page, isClearPage = true) {
         console.log(movies);
         // mainDOM.innerHTML = ''
         movies.forEach(movie => {
-            mainDOM.insertAdjacentHTML('beforeend', `
-                <div class="movie-item" onclick="getDetails(${movie.id})">
-                    <div class="genres-wrapper">
-                        ${movie.genre_ids.map(genreId => {
-                            return `<div class="movie-genre">${genresObj[genreId]}</div>`
-                        }).join('<br>')}
-                    </div>
-                    <div class="movie-item-img-wrapper">
-                        <img src="${imagePrefix}${movie.poster_path}" class="movie-item-img">
-                    </div>
-                    <h2 class="movie-item-title">${movie.title}</h2>
+            const stars = Math.ceil(movie.vote_average / 2)
+            let rating = ''
+            for(let i = 1; i <= 5; i++) {
+                if(i <= stars) {
+                    rating += '★'
+                } else {
+                    rating += '☆'
+                }
+            }
+
+            const movieItem = document.createElement('div')
+            movieItem.classList.add("movie-item")
+            movieItem.onclick = () => getDetails(movie.id)
+            movieItem.onmousemove = () => showAddInfo(movie.id, movieItem)
+            movieItem.onmouseleave = () => removeInfo()
+            movieItem.insertAdjacentHTML('beforeend', `
+                <div class="genres-wrapper">
+                    ${movie.genre_ids.map(genreId => {
+                        return `<div class="movie-genre">${genresObj[genreId]}</div>`
+                    }).join('<br>')}
                 </div>
-            `)
+                <div class="rating">
+                    ${rating}
+                </div>
+                <div class="movie-item-img-wrapper">
+                    <img src="${imagePrefix}${movie.poster_path}" class="movie-item-img">
+                </div>
+                <h2 class="movie-item-title">${movie.title}</h2>
+            `);
+
+            mainDOM.insertAdjacentElement('beforeend', movieItem)
         })
         pagination.classList.remove('hidden')
         searchFormAjax.classList.remove('hidden')
+        tabs.classList.remove('hidden')
         isLoading = false 
 
     } catch (e) {
         console.error(e)
     }
 }
-
 
 // function searchMovie(keyword) {
 //     currentPage = 1
@@ -73,9 +158,9 @@ async function getTopRatedMovies(page, isClearPage = true) {
 //         console.log(res)
 //         mainDOM.innerHTML = ''
 //         mainDOM.classList.add('list')
-//       })
+//        })
 //       .catch(err => console.error(err));
-// }
+// } 
 
 function searchMovieAjax(keyword) {
     const proposeWrapper = searchFormAjax.querySelector('.propose-wrapper')
@@ -108,6 +193,22 @@ function searchMovieAjax(keyword) {
 }
 
 
+topRatedBtn.addEventListener('click', () => {
+    getTopRatedMovies(currentPage)
+})
+
+popularBtn.addEventListener('click', () => {
+    getPopularMovies(currentPage)
+})
+
+upcomingBtn.addEventListener('click', () => {
+    getUpcomingMovies(currentPage)
+})
+
+nowPlayingBtn.addEventListener('click', () => {
+    getNowPlayingMovies(currentPage)
+})
+
 searchForm.addEventListener('submit', event => {
     event.preventDefault()
     const form = event.target
@@ -133,10 +234,22 @@ searchFormAjax.addEventListener('input', e => {
     searchMovieAjax(input.value)
 })
 
+movieTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+        movieTabs.forEach(tab => {
+            tab.classList.remove('active')
+        })
+
+        tab.classList.add('active')
+    })
+})
+    
+
 
 async function getDetails(id) {
     try {
         isLoading = true
+        tabs.classList.add('hidden')
         searchFormAjax.classList.add('hidden')
         pagination.classList.add('hidden')
         const resp = await fetch(`https://api.themoviedb.org/3/movie/${id}?language=uk-UK`, options);
