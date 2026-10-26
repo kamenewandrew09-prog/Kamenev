@@ -26,9 +26,7 @@ export function getPossibleMoves(row, col, piece) {
             for (let i = 1; i < 8; i++) {
                 let posRow = row - i
                 let posCol = col - i
-
-                if (posRow < 0 || posCol < 0) break
-
+ 
                 possibleMoves.push({ 
                     row: posRow, 
                     col: posCol 
@@ -39,8 +37,6 @@ export function getPossibleMoves(row, col, piece) {
                 let posRow = row - i
                 let posCol = col + i
 
-                if (posRow < 0 || posCol >= 8) break
-
                 possibleMoves.push({ 
                     row: posRow, 
                     col: posCol 
@@ -51,8 +47,6 @@ export function getPossibleMoves(row, col, piece) {
                 let posRow = row + i
                 let posCol = col + i
 
-                if (posRow >= 8 || posCol >= 8) break
-
                 possibleMoves.push({ 
                     row: posRow, 
                     col: posCol 
@@ -62,8 +56,6 @@ export function getPossibleMoves(row, col, piece) {
             for (let i = 1; i < 8; i++) {
                 let posRow = row + i
                 let posCol = col - i
-
-                if (posRow >= 8 || posCol < 0) break
 
                 possibleMoves.push({ 
                     row: posRow, 
