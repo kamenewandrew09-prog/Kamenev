@@ -103,17 +103,14 @@ export function getPossibleMoves(activeSquare, position) {
     }
 
     function getKingMoves(row, col, position, possibleMoves) {
-        for (let i = -1; i <= 1; i++) {
-            for (let j = -1; j <= 1; j++) {
+        for (let possibleRow = row - 1; possibleRow <= row + 1; possibleRow++) {
+            for (let possibleCol = col - 1; possibleCol <= col + 1; possibleCol++) {
 
-                if (i !== 0 || j !== 0) {
-                    let possibleRow = row + i
-                    let possibleCol = col + j
-
-                    if (
-                        possibleRow >= 0 && possibleRow <= 7 &&
-                        possibleCol >= 0 && possibleCol <= 7
-                    ) {
+                if (
+                    possibleRow >= 0 && possibleRow <= 7 &&
+                    possibleCol >= 0 && possibleCol <= 7
+                ) {
+                    if (possibleRow !== row || possibleCol !== col) {
                         if (position[possibleRow][possibleCol] === '.') {
                             possibleMoves.push({row: possibleRow, col: possibleCol})
                         } else {
