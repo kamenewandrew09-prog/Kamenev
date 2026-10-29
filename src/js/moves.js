@@ -110,12 +110,10 @@ export function getPossibleMoves(activeSquare, position) {
                     possibleRow >= 0 && possibleRow <= 7 &&
                     possibleCol >= 0 && possibleCol <= 7
                 ) {
-                    if (possibleRow !== row || possibleCol !== col) {
-                        if (position[possibleRow][possibleCol] === '.') {
-                            possibleMoves.push({row: possibleRow, col: possibleCol})
-                        } else {
-                            addFillSquareToPossibleMoves(possibleRow, possibleCol)
-                        }
+                    if (position[possibleRow][possibleCol] === '.') {
+                        possibleMoves.push({row: possibleRow, col: possibleCol})
+                    } else {
+                        addFillSquareToPossibleMoves(possibleRow, possibleCol)
                     }
                 }
             }
