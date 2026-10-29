@@ -64,21 +64,26 @@ function drawChessboard () {
                             col: col
 
                         }
-                        possibleMoves = getPossibleMoves(row, col, piecesFromPosition)
+                        possibleMoves = getPossibleMoves(activeSquare, position)
                         drawChessboard()
                     } 
 
-                } else if (activeSquare) {
-                    console.log(row, col)
-                    position[row][col] = activeSquare.piece
-
-                    position[activeSquare.row][activeSquare.col] = '.'
-                    activeSquare = null
-
-                    turn = turn === 'W' ? 'b' : 'W'
-
-                    drawChessboard()
                 }
+
+                if (activeSquare) {
+                    console.log(row, col)
+                    if (possibleMoves.filter(move => row === move.row && col === move.col).length) {
+                        position[row][col] = activeSquare.piece
+                        position[activeSquare.row][activeSquare.col] = '.'
+
+                        activeSquare = null
+
+                        turn = turn === 'W' ? 'b' : 'W'
+                        possibleMoves.length = 0
+                    }
+                }
+
+                drawChessboard()
             };
 
             chessboard.append(square)
