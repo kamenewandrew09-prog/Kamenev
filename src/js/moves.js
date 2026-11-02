@@ -3,17 +3,21 @@ export function getPossibleMoves(activeSquare, position) {
     const possibleMoves = []
 
     function addFillSquareToPossibleMoves(fillRow, fillCol) {
-        const piecesFromPosition = position[fillRow][fillCol]
-        if(
-            (color === 'W' && piecesFromPosition.toUpperCase() !== piecesFromPosition)
-            ||
-            (color === 'b' && piecesFromPosition.toLowerCase() !== piecesFromPosition)
-        ) {
-            possibleMoves.push({row: fillRow, col: fillCol})
+        if (fillRow >= 0 && fillRow <= 7 && fillCol >= 0 && fillCol <= 7) {
+            const piecesFromPosition = position[fillRow][fillCol]
+            if(
+                (piecesFromPosition === '.')
+                ||
+                (color === 'W' && piecesFromPosition.toUpperCase() !== piecesFromPosition)
+                ||
+                (color === 'b' && piecesFromPosition.toLowerCase() !== piecesFromPosition)
+            ) {
+                possibleMoves.push({row: fillRow, col: fillCol})
+            }
         }
     }
 
-    function getRookMoves(row, col, position, possibleMoves) {
+    function getRookMoves() {
         for (let possibleRow = row + 1; possibleRow <= 7; possibleRow++) {
             if (position[possibleRow][col] !== '.') {
                 addFillSquareToPossibleMoves(possibleRow, col);
@@ -52,7 +56,7 @@ export function getPossibleMoves(activeSquare, position) {
         }
     }
 
-    function getBishopMoves(row, col, position, possibleMoves) {
+    function getBishopMoves() {
         for (let i = 1; row + i <= 7 && col + i <= 7; i++) {
             let possibleRow = row + i
             let possibleCol = col + i
@@ -102,7 +106,7 @@ export function getPossibleMoves(activeSquare, position) {
         }
     }
 
-    function getKingMoves(row, col, position, possibleMoves) {
+    function getKingMoves() {
         for (let possibleRow = row - 1; possibleRow <= row + 1; possibleRow++) {
             for (let possibleCol = col - 1; possibleCol <= col + 1; possibleCol++) {
 
@@ -122,22 +126,69 @@ export function getPossibleMoves(activeSquare, position) {
 
     switch (piece.toLowerCase()) {
         case 'r' :
-            getRookMoves(row, col, position, possibleMoves)
+            getRookMoves()
 
             break
         
         case 'b' :
-            getBishopMoves(row, col, position, possibleMoves)
+            getBishopMoves()
 
             break
 
         case 'q' :
-            getRookMoves(row, col, position, possibleMoves)
-            getBishopMoves(row, col, position, possibleMoves)
+            getRookMoves()
+            getBishopMoves()
 
             break
         case 'k' :
-            getKingMoves(row, col, position, possibleMoves)
+            getKingMoves()
+
+            break
+        case 'n' :
+            addFillSquareToPossibleMoves(row - 2, col + 1)
+            addFillSquareToPossibleMoves(row - 1, col + 2)
+            addFillSquareToPossibleMoves(row + 1, col + 2)
+            addFillSquareToPossibleMoves(row + 2, col + 1)
+            addFillSquareToPossibleMoves(row + 2, col - 1)
+            addFillSquareToPossibleMoves(row + 1, col - 2) 
+            addFillSquareToPossibleMoves(row - 1, col - 2)
+            addFillSquareToPossibleMoves(row - 2, col - 1)
+
+            break 
+            
+        case 'p':
+
+            if (color === 'W') {
+                if (position[row - 1][col] === '.') {
+                    possibleMoves.push({row: row - 1, col: col})
+                    if (row === 6 && position[row - 2][col] === '.') {
+                        possibleMoves.push({row: row - 2, col: col})
+                    }
+                }
+
+                if (col > 0 && position[row - 1][col - 1] !== '.') {
+                    addFillSquareToPossibleMoves(row - 1, col - 1)
+                }
+                if (col < 7 && position[row - 1][col + 1] !== '.') {
+                    addFillSquareToPossibleMoves(row - 1, col + 1)
+                }
+
+            } else {
+                if (position[row + 1][col] === '.') {
+                    possibleMoves.push({row: row + 1, col: col})
+
+                    if (row === 1 && position[row + 2][col] === '.') {
+                        possibleMoves.push({row: row + 2, col: col})
+                    }
+                }
+
+                if (col > 0 && position[row + 1][col - 1] !== '.') {
+                    addFillSquareToPossibleMoves(row + 1, col - 1)
+                }
+                if (col < 7 && position[row + 1][col + 1] !== '.') {
+                    addFillSquareToPossibleMoves(row + 1, col + 1)
+                }
+            }
 
             break
     }
