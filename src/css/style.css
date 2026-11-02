@@ -44,12 +44,7 @@
     height: 75%;
 }
 
-.square:has(.piece) {
-    cursor: default;
-}
-
-.square.possible,
-.square.selected {
+.square.possible, .square.selected {
     cursor: pointer;
 }
 
