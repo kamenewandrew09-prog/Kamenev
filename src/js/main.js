@@ -1,5 +1,6 @@
 import {initialPosition, pieces_src} from "./constantas.js"
 import {getPossibleMoves } from "./moves.js";
+import {positionToFen, fenToPosition} from "./fen.js";
 
 const chessboard = document.querySelector('.chessboard');
 const turnDOM = document.querySelector('.turn')
@@ -8,6 +9,8 @@ const position = initialPosition
 let turn = 'W'
 let activeSquare = null
 let possibleMoves = []
+let fullTurns = 1
+let halfTurns = 0
 
 function drawChessboard () {
     chessboard.innerHTML = ''
@@ -71,14 +74,28 @@ function drawChessboard () {
                 }
 
                 if (activeSquare) {
-                    console.log(row, col)
+                    // console.log(row, col)
                     if (possibleMoves.filter(move => row === move.row && col === move.col).length) {
+                        
+                        halfTurns++
+
+                        if(activeSquare.piece.toLowerCase() === 'p' || position[row][col] !== '.') {
+                            halfTurns = 0
+                        }
+
                         position[row][col] = activeSquare.piece
                         position[activeSquare.row][activeSquare.col] = '.'
-
                         activeSquare = null
 
-                        turn = turn === 'W' ? 'b' : 'W'
+                        if(turn === 'W') {
+                            turn = 'b'
+                        } else {
+                            turn = 'W'
+                            fullTurns += 1
+                        }
+                        
+                        positionToFen(position, halfTurns, fullTurns, turn)
+
                         possibleMoves.length = 0
                     }
                 }
