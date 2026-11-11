@@ -18,10 +18,6 @@ export function positionToFen(position, halfTurns, fullTurns, turn) {
     }
 
     console.log(fen)
-    
-    console.log(halfTurns)
-    console.log(fullTurns)
-    console.log(turn)
 }
 
 export function fenToPosition(fen) {
