@@ -4,6 +4,8 @@ export function positionToFen(position, halfTurns, fullTurns, turn) {
     for (let line of position) {
         mockup += line.join('') + '/'
     }
+    mockup = mockup.slice(0, -1);
+
     let numberOfDots = 0;
     for (let i = 0; i < mockup.length; i++) {
         if (mockup[i] !== '.') {
@@ -17,7 +19,9 @@ export function positionToFen(position, halfTurns, fullTurns, turn) {
         }
     }
 
+    fen += ` ${turn.toLowerCase()} - - ${halfTurns} ${fullTurns}`
     console.log(fen)
+
 }
 
 export function fenToPosition(fen) {

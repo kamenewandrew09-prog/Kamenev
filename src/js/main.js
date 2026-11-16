@@ -4,7 +4,7 @@ import {positionToFen, fenToPosition} from "./fen.js";
 
 const chessboard = document.querySelector('.chessboard');
 const turnDOM = document.querySelector('.turn')
-const position = initialPosition 
+const position = [...initialPosition] 
 
 let turn = 'W'
 let activeSquare = null
