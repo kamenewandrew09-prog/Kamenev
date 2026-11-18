@@ -1,6 +1,7 @@
 import {initialPosition, pieces_src} from "./constantas.js"
 import {getPossibleMoves } from "./moves.js";
 import {positionToFen, fenToPosition} from "./fen.js";
+import {getStockfish} from "./stockfish.js"
 
 const chessboard = document.querySelector('.chessboard');
 const turnDOM = document.querySelector('.turn')
@@ -94,8 +95,8 @@ function drawChessboard () {
                             fullTurns += 1
                         }
                         
-                        positionToFen(position, halfTurns, fullTurns, turn)
-
+                        const fen = positionToFen(position, halfTurns, fullTurns, turn)
+                        getStockfish(fen)
                         possibleMoves.length = 0
                     }
                 }

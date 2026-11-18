@@ -22,8 +22,12 @@ export function positionToFen(position, halfTurns, fullTurns, turn) {
     fen += ` ${turn.toLowerCase()} - - ${halfTurns} ${fullTurns}`
     console.log(fen)
 
+    return fen
 }
 
 export function fenToPosition(fen) {
 
 }
+
+
+
